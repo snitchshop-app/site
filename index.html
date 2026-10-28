@@ -723,8 +723,11 @@ function getCampaign() {
 let _mu = null;
 function getUid() { try { let u = localStorage.getItem('sh_uid'); if (!u) { u = 'w' + Math.random().toString(36).slice(2,10) + Date.now().toString(36); localStorage.setItem('sh_uid', u); } return u; } catch(e) { return _mu || (_mu = 'm' + Math.random().toString(36).slice(2,10)); } }
 const ageOk = () => { try { return localStorage.getItem('sh_age18') === '1'; } catch(e) { return _ageMem; } }; let _ageMem = false;
+// режим владельца: открой сайт один раз со ссылкой ?me=1 — твои визиты не считаются (?me=0 выключает)
+try { const _m = new URLSearchParams(location.search).get('me'); if (_m === '1') localStorage.setItem('sh_owner', '1'); else if (_m === '0') localStorage.removeItem('sh_owner'); } catch(e) {}
+const IS_OWNER = (() => { try { return localStorage.getItem('sh_owner') === '1'; } catch(e) { return false; } })();
 function track(event, extra) {
-  if (IS_DRAFT || IS_BOT || FROM_MAILING || !ageOk()) return;
+  if (IS_DRAFT || IS_BOT || FROM_MAILING || IS_OWNER || !ageOk()) return;
   try { fetch(`${PROXY_URL}/track`, { method:'POST', headers:{'Content-Type':'text/plain;charset=UTF-8'}, body: JSON.stringify({ event, campaign: getCampaign(), uid: getUid(), meta: JSON.stringify(Object.assign({ src:'site' }, extra || {})).slice(0,300) }), keepalive:true }).catch(()=>{}); } catch(e) {}
 }
 // ---------- иконки ----------
