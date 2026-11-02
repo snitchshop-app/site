@@ -937,16 +937,15 @@ async function confirmOrder() {
     buyer = { full_name: 'Криптовалюта — ожидает данные от менеджера', phone: '' };
     msg += `Kryptowaluta\nZAMÓWIENIE\n\n${ol}TOTAL: ${count} sztuk\nCENA: ${total} Zł\n\nCena dostawy: ${dc} Zł\nRazem do zapłaty: ${total}+${dc}=${total+dc} Zł`;
   } else {
-    const name = val('f-name'), phoneRaw = val('f-phone'), city = val('f-miasto'), digits = phoneRaw.replace(/\D/g, '').replace(/^48/, '');
-    if (!name || !phoneRaw || !city) { showModal(t('fill_required')); return; }
-    if (!LAT.test(name) || !LAT.test(city)) { showModal(t('latin_only')); return; }
-    if (name.split(/\s+/).filter(w => w.length > 1).length < 2) { showModal(t('fill_fullname')); return; }
-    if (!/^[4-8]\d{8}$/.test(digits)) { showModal(t('fill_phone')); return; }
-    const phone = '+48 ' + digits.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
+    const name = val('f-name'), phoneRaw = val('f-phone'), city = val('f-miasto');
+    const phoneDigits = phoneRaw.replace(/\D/g, '').replace(/^48/, '');
+    if (!name || !phoneDigits || !city) { showModal(t('fill_required')); return; }
+    // формат не проверяем: главное, чтобы заказ дошёл до менеджера, а он уточнит данные
+    const phone = /^[4-8]\d{8}$/.test(phoneDigits) ? '+48 ' + phoneDigits.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3') : phoneRaw;
     let dl = '';
-    if (delivery === 'paczkomat') { const k = val('f-kodpacz').toUpperCase(); if (!/^[A-Z0-9]{4,10}$/.test(k) || !/[A-Z]/.test(k) || !/\d/.test(k)) { showModal(t('fill_kod')); return; } dl = `Dostawa: Paczkomat InPost\nMiasto: ${city}\nKod paczkomatu: ${k}\n`; deliveryLabel = 'Paczkomat InPost · ' + k; }
-    else if (delivery === 'zabka') { const z = val('f-zabka'); if (!z) { showModal(t('fill_zabka')); return; } if (!LAT.test(z)) { showModal(t('latin_only')); return; } dl = `Dostawa: Żabka\nMiasto: ${city}\nSklep Żabka / kod punktu: ${z}\n`; deliveryLabel = 'Żabka · ' + z; }
-    else { const k = val('f-kod'), u = val('f-ulica'), b = val('f-budynek'), l = val('f-lokal'); if (!k || !u || !b) { showModal(t('fill_required')); return; } if (!/^\d{2}-\d{3}$/.test(k)) { showModal(t('fill_zip')); return; } if (!LAT.test(u) || !LAT.test(b) || (l && !LAT.test(l))) { showModal(t('latin_only')); return; } dl = `Dostawa: Kurier\nMiasto: ${city}\nKod pocztowy: ${k}\nUlica: ${u} ${b}${l ? ' / ' + l : ''}\n`; deliveryLabel = 'Kurier · ' + u + ' ' + b; }
+    if (delivery === 'paczkomat') { const k = val('f-kodpacz').toUpperCase(); if (!k) { showModal(t('fill_required')); return; } dl = `Dostawa: Paczkomat InPost\nMiasto: ${city}\nKod paczkomatu: ${k}\n`; deliveryLabel = 'Paczkomat InPost · ' + k; }
+    else if (delivery === 'zabka') { const z = val('f-zabka'); if (!z) { showModal(t('fill_zabka')); return; } dl = `Dostawa: Żabka\nMiasto: ${city}\nSklep Żabka / kod punktu: ${z}\n`; deliveryLabel = 'Żabka · ' + z; }
+    else { const k = val('f-kod'), u = val('f-ulica'), b = val('f-budynek'), l = val('f-lokal'); if (!k || !u || !b) { showModal(t('fill_required')); return; } dl = `Dostawa: Kurier\nMiasto: ${city}\nKod pocztowy: ${k}\nUlica: ${u} ${b}${l ? ' / ' + l : ''}\n`; deliveryLabel = 'Kurier · ' + u + ' ' + b; }
     buyer = { full_name: name, phone }; shipping = { shipping_address_city: city };
     msg += `Pobranie\nZAMÓWIENIE\n\n${ol}TOTAL: ${count} sztuk\nCENA: ${total} Zł\n\nImię i Nazwisko: ${name}\nTelefon: ${phone}\n${dl}\nCena dostawy: ${dc} Zł\nRazem do zapłaty: ${total}+${dc}=${total+dc} Zł`;
   }
@@ -957,7 +956,7 @@ async function confirmOrder() {
   orderCreated = false; go('#/done');
 }
 async function sendToManager(ev) {
-  track('manager_click', { src: 'order' });
+  track('manager_click', { from: 'order' });
   if (orderCreated || !pending) return;
   ev.preventDefault(); if (busy) return; busy = true;
   const url = pending.link, r = await createOrder(); busy = false;
@@ -990,10 +989,7 @@ document.addEventListener('click', ev => {
 });
 document.addEventListener('input', ev => {
   if (ev.target.id === 'flt') { flavorFilter = ev.target.value; renderPage(); }
-  else if (ev.target.id === 'f-phone') { const el = ev.target; let v = el.value.replace(/\D/g, '').replace(/^(48)+/, '').slice(0, 9); el.value = '+48' + (v ? ' ' + v.replace(/(\d{1,3})(\d{1,3})?(\d{1,3})?/, (m, a, b, c) => [a, b, c].filter(Boolean).join(' ')) : ' '); form['f-phone'] = el.value; }
-  else if (['f-name', 'f-miasto', 'f-ulica', 'f-zabka'].includes(ev.target.id)) { ev.target.value = ev.target.value.replace(/[^A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż0-9 .,'\/\-]/g, ''); form[ev.target.id] = ev.target.value; }
-  else if (ev.target.id === 'f-kodpacz') { ev.target.value = ev.target.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 10); form['f-kodpacz'] = ev.target.value; }
-  else if (ev.target.id === 'f-kod') { let d = ev.target.value.replace(/\D/g, '').slice(0, 5); ev.target.value = d.length > 2 ? d.slice(0, 2) + '-' + d.slice(2) : d; form['f-kod'] = ev.target.value; }
+  else if (typeof ev.target.id === 'string' && ev.target.id.indexOf('f-') === 0) { form[ev.target.id] = ev.target.value; }
 });
 document.addEventListener('keydown', ev => { if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('[role=button][data-act]')) { ev.preventDefault(); ev.target.click(); } });
 window.addEventListener('hashchange', onRoute);
