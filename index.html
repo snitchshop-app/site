@@ -13,6 +13,9 @@ h1,h2,h3,.logo,.btn,.pname,.ct-lbl b,.stp i,.tot{font-family:Poppins,Inter,Arial
 a{color:inherit;text-decoration:none}svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}img{display:block}
 .wrap{max-width:1160px;margin:0 auto;padding:0 20px}.sp{flex:1}
 /* header */
+.pbar{background:linear-gradient(90deg,#5b3584,#73489d);color:#fff;text-align:center;padding:9px 14px;font-size:14px;font-weight:600;display:flex;gap:6px 14px;justify-content:center;align-items:center;flex-wrap:wrap}.pbar a{background:#fff;color:#4a2a70;border-radius:99px;padding:5px 14px;font-weight:700;white-space:nowrap}.pbar small{opacity:.8;font-weight:500}
+.ppill{display:inline-flex;align-items:center;gap:8px;background:rgba(115,72,157,.25);border:1px solid #73489d;color:#e3d2f5;border-radius:99px;padding:7px 14px;font-size:14px;font-weight:600;margin:0 0 14px}
+.pbox{background:linear-gradient(135deg,rgba(115,72,157,.28),rgba(115,72,157,.08));border:1px solid #73489d;border-radius:var(--r);padding:16px 18px;margin:0 0 16px}.pbox b{display:block;font-size:17px;margin-bottom:4px}.pbox p{color:var(--mut);font-size:14px;margin:0 0 12px}.pbox .btn{min-height:42px}
 .hdr{position:sticky;top:0;z-index:30;background:rgba(9,14,17,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .hd{display:flex;align-items:center;gap:22px;height:64px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;white-space:nowrap}.logo img{width:30px;height:30px;border-radius:8px}
@@ -166,12 +169,12 @@ const T = {
   nav_catalog:'Katalog', nav_app:'Mini-aplikacja', nav_delivery:'Dostawa', nav_payment:'Płatność', nav_returns:'Zwrot i wymiana', nav_contact:'Kontakt', cart:'Koszyk',
   hero_h:'Vapy z dostawą<br>w całej Polsce', hero_p:'Liquidy, jednorazówki i pody. Im więcej bierzesz, tym taniej.',
   open_catalog:'Zobacz katalog', mini_app:'Mini-aplikacja', chip1:'13 modeli', chip2:'271 smaków',
-  perk1:'Smart Cena', perk1s:'Im więcej sztuk, tym niższa cena', perk2:'Płatność przy odbiorze', perk2s:'Lub kryptowaluta', perk3:'Dostawa od 25 zł', perk3s:'', perk4:'Zwrot i wymiana', perk4s:'Zasady na stronie',
+  perk1:'Smart Cena', perk1s:'Im więcej sztuk, tym niższa cena', perk2:'Płatność przy odbiorze', perk2s:'Lub kryptowaluta', perk3:'Dostawa od 25 zł', perk3s:'Paczkomat, Żabka lub kurier', perk4:'Zwrot i wymiana', perk4s:'Zasady na stronie',
   categories:'Kategorie', all_models:'Wszystkie modele', how:'Jak zamówić', reviews:'Opinie klientów', nav_reviews:'Opinie',
   s1:'Wybierz smaki', s1s:'Dodaj produkty do koszyka — cena przeliczy się sama', s2:'Podaj dane dostawy', s2s:'Imię, telefon, Paczkomat, Żabka lub kurier', s3:'Napisz do menedżera', s3s:'Zamówienie jest zarezerwowane, menedżer potwierdza je w Telegramie',
   tg_q:'Otworzyć mini-aplikację w Telegramie?', tg_yes:'Tak', tg_no:'Nie',
   tgapp:'Mini-aplikacja w Telegramie', tgapp_s:'Ten sam katalog w Telegramie — wygodniej z telefonu.', open_tg:'Otwórz w Telegramie', manager:'Menedżer', manager_s:'Pytania o dostępność, płatność i dostawę.',
-  home:'Strona główna', pick_model:'Wybierz model', models_n:n=>n===1?'model':n<5?'modele':'modeli', flavors_n:n=>n===1?'smak':n<5?'smaki':'smaków',
+  home:'Strona główna', promo_bar:'🎁 Napisz do menedżera i odbierz gwarantowany prezent', promo_btn:'Odbierz prezent', promo_until:'Akcja do', promo_pill:'🎁 Gwarantowany prezent za wiadomość', promo_t:'Gwarantowany prezent', promo_p:'Napisz do menedżera, wybierz liczbę od 1 do 10 i odbierz bonus na następne zamówienie.', promo_msg:'Cześć! Chcę odebrać mój gwarantowany prezent 🎁', pick_model:'Wybierz model', models_n:n=>n===1?'model':n<5?'modele':'modeli', flavors_n:n=>n===1?'smak':n<5?'smaki':'smaków',
   search:'Szukaj smaku', sale:'Promocja', out:'Wyprzedane', smart:'Smart Cena', pcs:'szt.', per_pcs:'zł/szt.', your_level:'Twój poziom',
   cart_title:'Koszyk', cart_empty:'Koszyk pusty', cart_empty_sub:'Dodaj produkty z katalogu', positions:'Pozycji', discount:'Zniżka Smart Cena', total:'Razem', add_more:'Dodaj więcej', checkout:'Złóż zamówienie', pos_in_cart:'poz. w koszyku',
   upsell:(n,p,s)=>`Dodaj jeszcze <b>${n} szt.</b> → cena <b>${p} zł/szt.</b>, zaoszczędzisz <b>${s} zł</b>`,
@@ -197,12 +200,12 @@ const T = {
   nav_catalog:'Каталог', nav_app:'Мини-приложение', nav_delivery:'Доставка', nav_payment:'Оплата', nav_returns:'Возврат и замена', nav_contact:'Контакты', cart:'Корзина',
   hero_h:'Вейпы с доставкой<br>по всей Польше', hero_p:'Жидкости, одноразки и поды. Чем больше берёшь, тем дешевле.',
   open_catalog:'Открыть каталог', mini_app:'Мини-приложение', chip1:'13 моделей', chip2:'271 вкус',
-  perk1:'Smart Cena', perk1s:'Чем больше штук, тем ниже цена', perk2:'Оплата при получении', perk2s:'Или криптовалюта', perk3:'Доставка от 25 zł', perk3s:'', perk4:'Возврат и замена', perk4s:'Условия на странице',
+  perk1:'Smart Cena', perk1s:'Чем больше штук, тем ниже цена', perk2:'Оплата при получении', perk2s:'Или криптовалюта', perk3:'Доставка от 25 zł', perk3s:'Paczkomat, Żabka или курьер', perk4:'Возврат и замена', perk4s:'Условия на странице',
   categories:'Категории', all_models:'Все модели', how:'Как заказать', reviews:'Отзывы клиентов', nav_reviews:'Отзывы',
   s1:'Выберите вкусы', s1s:'Добавьте товары в корзину, цена пересчитается сама', s2:'Заполните доставку', s2s:'Имя, телефон, Paczkomat, Żabka или курьер', s3:'Напишите менеджеру', s3s:'Заказ резервируется, менеджер подтверждает в Telegram',
   tg_q:'Открыть мини-приложение в Telegram?', tg_yes:'Да', tg_no:'Нет',
   tgapp:'Мини-приложение в Telegram', tgapp_s:'Тот же каталог внутри Telegram — быстрее с телефона.', open_tg:'Открыть в Telegram', manager:'Менеджер', manager_s:'Вопросы по наличию, оплате и доставке.',
-  home:'Главная', pick_model:'Выберите модель', models_n:n=>n===1?'модель':n<5?'модели':'моделей', flavors_n:n=>n===1?'вкус':n<5?'вкуса':'вкусов',
+  home:'Главная', promo_bar:'🎁 Напиши менеджеру и получи гарантированный подарок', promo_btn:'Получить подарок', promo_until:'Акция до', promo_pill:'🎁 Гарантированный подарок за сообщение', promo_t:'Гарантированный подарок', promo_p:'Напиши менеджеру, выбери число от 1 до 10 и получи бонус на следующий заказ.', promo_msg:'Привет! Хочу забрать свой гарантированный подарок 🎁', pick_model:'Выберите модель', models_n:n=>n===1?'модель':n<5?'модели':'моделей', flavors_n:n=>n===1?'вкус':n<5?'вкуса':'вкусов',
   search:'Поиск по вкусам', sale:'Акция', out:'Нет в наличии', smart:'Smart Cena', pcs:'шт.', per_pcs:'zł/шт.', your_level:'Ваш уровень',
   cart_title:'Корзина', cart_empty:'Корзина пуста', cart_empty_sub:'Добавьте товары из каталога', positions:'Позиций', discount:'Скидка Smart Cena', total:'Итого', add_more:'Добавить ещё', checkout:'Оформить заказ', pos_in_cart:'поз. в корзине',
   upsell:(n,p,s)=>`Добавьте ещё <b>${n} шт.</b> → цена <b>${p} zł/шт.</b>, сэкономите <b>${s} zł</b>`,
@@ -228,6 +231,14 @@ const T = {
 let lang = 'pl';
 try { lang = localStorage.getItem('vl_lang') || ''; } catch(e) {}
 const hasLang = lang === 'pl' || lang === 'ru'; if (!hasLang) lang = 'pl';
+// ---------- временная акция (выключить: on:false; сама пропадёт после даты until) ----------
+const PROMO = { on: true, until: '2026-11-20' };
+const promoOn = () => PROMO.on && new Date() <= new Date(PROMO.until + 'T23:59:59');
+const promoLink = () => `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(t('promo_msg'))}`;
+const promoDate = () => { const p = PROMO.until.split('-'); return p[2] + '.' + p[1]; };
+const promoBar = () => promoOn() ? `<div class="pbar"><span>${t('promo_bar')} <small>· ${t('promo_until')} ${promoDate()}</small></span><a href="${promoLink()}" target="_blank" rel="noopener" data-act="mgr">${t('promo_btn')}</a></div>` : '';
+const promoPill = () => promoOn() ? `<div class="ppill">${t('promo_pill')}</div>` : '';
+const promoBox = () => promoOn() ? `<div class="pbox"><b>${t('promo_t')}</b><p>${t('promo_p')} <small>(${t('promo_until')} ${promoDate()})</small></p><a class="btn" href="${promoLink()}" target="_blank" rel="noopener" data-act="mgr">${t('promo_btn')}</a></div>` : '';
 const t = (k, ...a) => { const v = (T[lang][k] ?? T.pl[k] ?? k); return typeof v === 'function' ? v(...a) : v; };
 const catName = c => lang === 'pl' && c.name_pl ? c.name_pl : c.name;
 
@@ -819,7 +830,7 @@ function home() {
   <section class="sec rv" id="jak"><h2>${t('how')}</h2><div class="stps">${steps}</div></section>
   ${revs}
   <section class="sec rv" id="info"><h2>${t('foot_info')}</h2>${infoBlock('')}</section>
-  <section class="sec rv" id="kontakt"><h2>${t('nav_contact')}</h2><div class="contact"><img src="images/mascot.webp" alt="" onerror="this.style.display='none'"><div><h3>${t('manager')}</h3><p>${t('manager_s')}</p><div class="cbtns"><a class="btn big" href="https://t.me/${MANAGER_USERNAME}" target="_blank" rel="noopener" data-act="mgr">${ico('tg')} @${MANAGER_USERNAME}</a>${tgBtn}</div></div></div></section></div>`;
+  <section class="sec rv" id="kontakt"><h2>${t('nav_contact')}</h2><div class="contact"><img src="images/mascot.webp" alt="" onerror="this.style.display='none'"><div><h3>${t('manager')}</h3><p>${t('manager_s')}</p><div class="cbtns"><a class="btn big" href="https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent('Cześć! Chcę zamówić. Pomożesz?')}" target="_blank" rel="noopener" data-act="mgr">${ico('tg')} @${MANAGER_USERNAME}</a>${tgBtn}</div></div></div></section></div>`;
 }
 function catPage(id) {
   const c = catalog.find(x => x.id === id); if (!c) return notFound();
@@ -905,7 +916,7 @@ function renderPage() {
     case 'info': body = infoPage(); break;
     default: body = home();
   }
-  app.innerHTML = header(r) + `<main class="view">${body}</main>` + footer() + cartBar(r);
+  app.innerHTML = promoBar() + header(r) + `<main class="view">${body}</main>` + footer() + cartBar(r);
   afterRender(app);
   if (focusId) { const el = document.getElementById(focusId); if (el) { el.focus(); try { el.setSelectionRange(selStart, selStart); } catch(e) {} } }
 }
