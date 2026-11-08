@@ -734,7 +734,7 @@ async function createOrder() {
   const products = Object.values(cart).filter(i => SKU_MAP[i.key]).map(i => ({ name:`${i.modelName} ${i.flavor}`, sku:SKU_MAP[i.key], quantity:i.qty, price:unitPrice(i,T_) }));
   if (!products.length) return { ok: true };
   try {
-    const r = await fetch(`${PROXY_URL}/order`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ buyer: pending.buyer, shipping: pending.shipping, products, campaign: getCampaign(), uid: getUid() }) });
+    const r = await fetch(`${PROXY_URL}/order`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ buyer: pending.buyer, shipping: pending.shipping, comment: pending.msg || '', products, campaign: getCampaign(), uid: getUid() }) });
     const d = await r.json();
     if (!r.ok) return { ok:false, message: d.error === 'insufficient_stock' ? t('stock_checkout_error', nameOf(d.sku)) : t('stock_order_failed') };
     return { ok: true };
@@ -783,7 +783,7 @@ const REVIEWS = [
   { name: "Iga P", text_pl: "Naprawdę polecam, dostawa w jeden dzień bezpieczna. Smak świetny. Polecaaam" },
   { name: "Piotrek C", text_pl: "Bardzo duży asortyment, serdecznie polecam Snitcha, szybko wysyłka, dobry kontakt z Panią , napewno będę stałym klientem" }
 ];
-let pending = null, orderCreated = false, busy = false, payMethod = 'cod', delivery = 'paczkomat', flavorFilter = '';
+let pending = null, orderCreated = false, lastSig = '', submitTracked = false, busy = false, payMethod = 'cod', delivery = 'paczkomat', flavorFilter = '';
 const form = {};   // значения полей формы
 // ---------- шаблоны ----------
 function groupCart() {
@@ -990,17 +990,25 @@ async function confirmOrder() {
   const btn = document.querySelector('[data-act="confirm"]'); if (btn) btn.style.opacity = .6;
   const sc = await checkStock(); if (btn) btn.style.opacity = 1;
   if (!sc.ok) { showModal(sc.message); return; }
-  pending = { buyer, shipping, pay: payMethod, total: total + dc, deliveryLabel, link: `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(msg)}` };
-  orderCreated = false; go('#/done');
+  pending = { buyer, shipping, msg, pay: payMethod, sum: total, total: total + dc, deliveryLabel, link: `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(msg)}` };
+  // заказ создаём сразу (KeyCRM + копия менеджеру в Telegram), не дожидаясь кнопки «Napisz do menedżera».
+  // Если клиент вернулся назад и подтвердил тот же заказ ещё раз — второй не создаём.
+  if (!(orderCreated && lastSig === msg)) {
+    if (busy) return; busy = true;
+    if (btn) btn.style.opacity = .6;
+    const r = await createOrder();
+    busy = false; if (btn) btn.style.opacity = 1;
+    if (!r.ok) { showModal(r.message); return; }
+    orderCreated = true; lastSig = msg; submitTracked = false;
+    cart = {}; saveCart(); // заказ уже оформлен — корзину очищаем, чтобы клиент не оформил его повторно
+  }
+  go('#/done');
 }
-async function sendToManager(ev) {
+function sendToManager(ev) {
+  // заказ уже создан при подтверждении; здесь только статистика (в дашборд идёт именно нажатие «Napisz do menedżera»)
   track('manager_click', { from: 'order' });
-  if (orderCreated || !pending) return;
-  ev.preventDefault(); if (busy) return; busy = true;
-  const url = pending.link, r = await createOrder(); busy = false;
-  if (!r.ok) { showModal(r.message); return; }
-  orderCreated = true; track('order_submitted', { pay: pending.pay, total: cartTotal() });
-  location.href = url;
+  if (!pending) return;
+  if (!submitTracked) { submitTracked = true; track('order_submitted', { pay: pending.pay, total: pending.sum }); }
 }
 // автопрокрутка отзывов: раз в 5 секунд на одну карточку, по кругу; паузится, если пользователь трогает ленту
 let _revPause = 0;
@@ -1031,7 +1039,7 @@ document.addEventListener('click', ev => {
   else if (a === 'deliv') { saveForm(); delivery = el.dataset.v; renderPage(); }
   else if (a === 'confirm') confirmOrder();
   else if (a === 'send') sendToManager(ev);
-  else if (a === 'neworder') { cart = {}; saveCart(); pending = null; orderCreated = false; Object.keys(form).forEach(k => delete form[k]); go('#/'); }
+  else if (a === 'neworder') { cart = {}; saveCart(); pending = null; orderCreated = false; lastSig = ''; submitTracked = false; Object.keys(form).forEach(k => delete form[k]); go('#/'); }
   else if (a === 'mclose') closeModal();
   else if (a === 'mgr') track('manager_click', { src: 'site' });
   else if (a === 'tgapp') { ev.preventDefault(); document.getElementById('mmenu')?.classList.remove('open'); showTgConfirm(el.getAttribute('href')); }
