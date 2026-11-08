@@ -734,7 +734,7 @@ async function createOrder() {
   const products = Object.values(cart).filter(i => SKU_MAP[i.key]).map(i => ({ name:`${i.modelName} ${i.flavor}`, sku:SKU_MAP[i.key], quantity:i.qty, price:unitPrice(i,T_) }));
   if (!products.length) return { ok: true };
   try {
-    const r = await fetch(`${PROXY_URL}/order`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ buyer: pending.buyer, shipping: pending.shipping, comment: pending.msg || '', products, campaign: getCampaign(), uid: getUid() }) });
+    const r = await fetch(`${PROXY_URL}/order`, { method:'POST', keepalive: true, headers:{'Content-Type':'application/json'}, body: JSON.stringify({ buyer: pending.buyer, shipping: pending.shipping, comment: pending.msg || '', products, campaign: getCampaign(), uid: getUid() }) });
     const d = await r.json();
     if (!r.ok) return { ok:false, message: d.error === 'insufficient_stock' ? t('stock_checkout_error', nameOf(d.sku)) : t('stock_order_failed') };
     return { ok: true };
@@ -990,16 +990,20 @@ async function confirmOrder() {
   const btn = document.querySelector('[data-act="confirm"]'); if (btn) btn.style.opacity = .6;
   // отдельную проверку остатков здесь не делаем: воркер проверяет их при создании заказа (это вдвое быстрее)
   pending = { buyer, shipping, msg, pay: payMethod, sum: total, total: total + dc, deliveryLabel, link: `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(msg)}` };
-  // заказ создаём сразу (KeyCRM + копия менеджеру в Telegram), не дожидаясь кнопки «Napisz do menedżera».
-  // Если клиент вернулся назад и подтвердил тот же заказ ещё раз — второй не создаём.
+  // заказ создаём сразу (KeyCRM + копия менеджеру в Telegram). Клиент не ждёт: экран «Prawie gotowe» открывается мгновенно,
+  // а заказ создаётся в фоне. Если не получилось (например, товар закончился) — возвращаем в оформление с сообщением.
   if (!(orderCreated && lastSig === msg)) {
     if (busy) return; busy = true;
-    if (btn) btn.style.opacity = .6;
-    const r = await createOrder();
-    busy = false; if (btn) btn.style.opacity = 1;
-    if (!r.ok) { showModal(r.message); return; }
+    const backup = JSON.parse(JSON.stringify(cart));
+    const bg = createOrder(); // товары из корзины читаются сразу при вызове
     orderCreated = true; lastSig = msg; submitTracked = false;
-    cart = {}; saveCart(); // заказ уже оформлен — корзину очищаем, чтобы клиент не оформил его повторно
+    cart = {}; saveCart();
+    bg.then(r => {
+      busy = false;
+      if (r.ok) return;
+      orderCreated = false; lastSig = ''; pending = null; cart = backup; saveCart();
+      showModal(r.message); go('#/order');
+    });
   }
   if (btn) btn.style.opacity = 1;
   go('#/done');
