@@ -13,15 +13,16 @@ h1,h2,h3,.logo,.btn,.pname,.ct-lbl b,.stp i,.tot{font-family:Poppins,Inter,Arial
 a{color:inherit;text-decoration:none}svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}img{display:block}
 .wrap{max-width:1160px;margin:0 auto;padding:0 20px}.sp{flex:1}
 /* header */
-.pbar{background:linear-gradient(90deg,#5b3584,#73489d);color:#fff;text-align:center;padding:9px 14px;font-size:14px;font-weight:600;display:flex;gap:6px 14px;justify-content:center;align-items:center;flex-wrap:wrap}.pbar a{background:#fff;color:#4a2a70;border-radius:99px;padding:5px 14px;font-weight:700;white-space:nowrap}.pbar small{opacity:.8;font-weight:500}
+.pbar{background:linear-gradient(90deg,#5b3584,#73489d);color:#fff;text-align:center;padding:7px 14px;font-size:14px;font-weight:600;display:flex;gap:6px 14px;justify-content:center;align-items:center}.pbar a{background:#fff;color:#4a2a70;border-radius:99px;padding:6px 14px;font-weight:700;white-space:nowrap}.pbar small{opacity:.8;font-weight:500;display:block;font-size:11.5px;margin-top:1px}.pbar span{text-align:left}@media(min-width:700px){.pbar small{display:inline;margin:0 0 0 6px;font-size:inherit}.pbar small:before{content:'· '}}
 .ppill{display:inline-flex;align-items:center;gap:8px;background:rgba(115,72,157,.25);border:1px solid #73489d;color:#e3d2f5;border-radius:99px;padding:7px 14px;font-size:14px;font-weight:600;margin:0 0 14px}
 .pbox{background:linear-gradient(135deg,rgba(115,72,157,.28),rgba(115,72,157,.08));border:1px solid #73489d;border-radius:var(--r);padding:16px 18px;margin:0 0 16px}.pbox b{display:block;font-size:17px;margin-bottom:4px}.pbox p{color:var(--mut);font-size:14px;margin:0 0 12px}.pbox .btn{min-height:42px}
 .hdr{position:sticky;top:0;z-index:30;background:rgba(9,14,17,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .hd{display:flex;align-items:center;gap:22px;height:64px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;white-space:nowrap}.logo img{width:30px;height:30px;border-radius:8px}
+@media(max-width:360px){.hd{gap:6px}.logo{font-size:16px;gap:7px}.logo img{width:26px;height:26px}.cartbtn{padding:0 11px}}
 nav{display:flex;gap:2px}nav a{white-space:nowrap;padding:8px 10px;border-radius:99px;font-size:14px;font-weight:500;color:var(--mut)}nav a:hover,nav a.on{color:var(--text);background:var(--s2)}
 .lang{font-size:13px;font-weight:600;color:var(--mut);cursor:pointer;padding:8px 6px}.lang i{font-style:normal;margin:0 3px;opacity:.5}.lang:hover{color:var(--text)}
-.cartbtn{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:99px;background:var(--mint);color:var(--onm);font-weight:700;font-size:14px}
+.cartbtn{display:flex;align-items:center;gap:8px;height:42px;white-space:nowrap;flex-shrink:0;padding:0 16px;border-radius:99px;background:var(--mint);color:var(--onm);font-weight:700;font-size:14px}
 .cnt{background:#fff;color:var(--mint);border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:12px;padding:0 6px}
 .burger{display:none;width:42px;height:42px;border-radius:50%;background:var(--s2);place-items:center;cursor:pointer}
 .mmenu{display:none;flex-direction:column;background:var(--bg);border-top:1px solid var(--line)}.mmenu.open{display:flex}.mmenu a{padding:15px 20px;font-weight:500;border-bottom:1px solid var(--line);cursor:pointer}
@@ -59,7 +60,7 @@ h1{font-size:clamp(30px,4.6vw,58px);line-height:1.04;font-weight:800;letter-spac
 /* footer */
 .ftr{margin-top:70px;border-top:1px solid var(--line);padding:34px 0 110px;color:var(--mut);font-size:14px}.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:24px}.fgrid b{display:block;color:var(--text);margin-bottom:8px}.fgrid a{display:block;padding:4px 0}.fgrid a:hover{color:var(--text)}.age{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);font-size:13px}
 /* pages */
-.pg{padding-top:22px}.pg h1{font-size:clamp(28px,3.4vw,40px)}.sub{color:var(--mut);margin:4px 0 22px}
+.pg{padding-top:22px}.pg h1{font-size:clamp(28px,3.4vw,40px)}.pg h1+.two{margin-top:22px}.sub{color:var(--mut);margin:4px 0 22px}
 .back{display:inline-flex;align-items:center;gap:4px;color:var(--mut);font-size:14px;font-weight:500;margin-bottom:14px;padding:6px 10px 6px 0}.back:hover{color:var(--text)}.back svg{width:18px;height:18px}
 .mlay{display:block}.mhead>*,.two>*,.hero-in>*{min-width:0}.mhead{display:grid;grid-template-columns:380px 1fr;gap:34px;align-items:start;margin-bottom:26px}
 .mimg{aspect-ratio:1;border-radius:22px;overflow:hidden;background:#000}.mimg img{width:100%;height:100%;object-fit:cover}
@@ -80,7 +81,7 @@ h1{font-size:clamp(30px,4.6vw,58px);line-height:1.04;font-weight:800;letter-spac
 .sh{display:block;font-family:Poppins,sans-serif;margin-bottom:8px}.ol{padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}.ol b{display:block;font-size:14px}.ol>span{display:flex;justify-content:space-between;color:var(--mut);font-size:14px}.ol em{font-style:normal;color:var(--text)}
 .fm{background:var(--s1);border-radius:22px;padding:24px}.fm h3{font-size:16px;font-weight:600;margin-bottom:10px}
 .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}.seg.s3{grid-template-columns:1fr 1fr 1fr;margin-bottom:6px}.seg div{min-height:50px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:var(--s2);font-weight:600;font-size:15px;cursor:pointer;text-align:center;padding:0 6px}.seg .on{background:var(--mint);color:var(--onm)}
-label{display:block;font-size:13px;color:var(--mut);margin:16px 0 6px}input.in{width:100%;min-height:52px;padding:0 16px;border:0;border-radius:14px;background:var(--s2);color:var(--text);font:400 16px Inter,Arial,sans-serif;outline:none}input.in:focus{box-shadow:0 0 0 2px var(--mint)}input.in::placeholder{color:#5a6c71}.hint{font-size:12px;color:var(--mut);margin-top:6px}
+label{display:block;font-size:13px;color:#aebcc0;font-weight:500;margin:18px 0 8px}label i{color:var(--mt);font-style:normal}input.in{width:100%;min-height:54px;padding:0 16px;border:0;border-radius:14px;background:#161f24;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.08);color:var(--text);font:400 16px Inter,Arial,sans-serif;outline:none}input.in:focus{box-shadow:inset 0 0 0 2px var(--mt),0 0 0 4px rgba(176,138,216,.18)}input.in::placeholder{color:#7d9197}.cod{background:rgba(176,138,216,.10);box-shadow:inset 0 0 0 1px rgba(176,138,216,.28);border-radius:12px;padding:11px 14px;font-size:13.5px;color:#d9c7ee;margin:-8px 0 6px}.trust{margin-top:12px;display:grid;gap:6px;font-size:13px;color:#9fb0b5;text-align:center}.fm h3{margin-top:26px}.fm h3:first-child{margin-top:0}.hint{font-size:12px;color:var(--mut);margin-top:6px}
 .center{text-align:center;max-width:500px;margin:56px auto}.center p{color:var(--mut);margin:12px 0 26px}.center h1{font-size:clamp(28px,4vw,40px)}.ok{width:72px;height:72px;border-radius:50%;background:var(--mint);color:var(--onm);display:grid;place-items:center;margin:0 auto 20px}.ok svg{width:34px;height:34px}
 .info{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.info section{border-top:2px solid var(--mint);padding-top:18px}.info h3{display:flex;gap:10px;align-items:center;font-size:20px;margin-bottom:12px}.info h3 svg{color:var(--mt)}.info p{color:var(--mut);font-size:15px;margin-bottom:10px}.info p b{color:var(--text)}.meth{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.meth span{background:var(--s2);border-radius:99px;padding:4px 12px;font-size:13px}
 /* overlays */
@@ -108,28 +109,15 @@ label{display:block;font-size:13px;color:var(--mut);margin:16px 0 6px}input.in{w
 }
 
 /* ---- мини-анимации ---- */
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(8px)}to{opacity:1;transform:none}}
-@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
-@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.35);color:var(--mt)}100%{transform:scale(1)}}
-@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.view.enter{animation:fadeUp .38s cubic-bezier(.2,.7,.2,1) both}
-.view.enter .htxt h1,.view.enter .htxt p,.view.enter .htxt .btn{animation:fadeUp .6s cubic-bezier(.2,.7,.2,1) both}.view.enter .htxt p{animation-delay:.08s}.view.enter .htxt .btn{animation-delay:.16s}.view.enter .hban{animation:fadeUp .7s .12s cubic-bezier(.2,.7,.2,1) both}
-.rv-on .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}.rv-on .rv.in{opacity:1;transform:none}
-.cartbtn.bump{animation:bump .35s ease}.qty em.pop{display:inline-block;animation:pop .3s ease}.cbar.cbar-in{animation:slideUp .4s cubic-bezier(.2,.7,.2,1) both}
-.ov:not(.hidden){animation:fadeIn .25s ease}.ov:not(.hidden)>.lang-card,.ov:not(.hidden)>.age-card,.ov:not(.hidden)>.dlg{animation:popIn .3s cubic-bezier(.2,.7,.2,1) both}
-.mmenu.open{animation:fadeUp .22s ease both}
 .btn,.qty button,.fv,.pc,.ct-tile,.tier,.seg div,.cartbtn{transition:transform .18s ease,background .18s ease,filter .18s ease,box-shadow .18s ease}
 .btn:hover{transform:translateY(-1px)}.pc:active,.ct-tile:active{transform:scale(.985)}.qty button:active{transform:scale(.88)}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
-/* анимации отключены полностью */
-*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto!important}.rv{opacity:1!important;transform:none!important}
+*,*::before,*::after{transition:none!important}html{scroll-behavior:auto!important}
 .mmenu .mlang{display:flex;gap:8px;padding:14px 20px}.mmenu .mlang a{flex:none;padding:8px 18px;border:0;border-radius:99px;background:var(--s2);font-weight:600;font-size:14px;color:var(--mut)}.mmenu .mlang a.on{background:var(--mint);color:var(--onm)}
-.appbtn{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:99px;font-size:14px;font-weight:600;color:var(--text);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.22)}.appbtn:hover{background:var(--s2)}.appbtn svg{width:18px;height:18px;color:var(--mt)}
+.appbtn{display:flex;align-items:center;gap:8px;height:42px;white-space:nowrap;flex-shrink:0;padding:0 16px;border-radius:99px;font-size:14px;font-weight:600;color:var(--text);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.22)}.appbtn:hover{background:var(--s2)}.appbtn svg{width:18px;height:18px;color:var(--mt)}
 .mmenu .mapp{display:flex;align-items:center;gap:10px;color:var(--mt);font-weight:600}.mmenu .mapp svg{width:20px;height:20px}
 .appico{display:none}
 @media(max-width:900px){.appbtn{display:none}.appico{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:var(--mt);box-shadow:inset 0 0 0 1.5px rgba(176,138,216,.45)}.appico svg{width:19px;height:19px}}
+@media(min-width:901px) and (max-width:1120px){nav{display:none}.lang{display:none}.burger{display:grid}.appbtn{display:none}.appico{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:var(--mt);box-shadow:inset 0 0 0 1.5px rgba(176,138,216,.45)}.appico svg{width:19px;height:19px}}
 .mhead{display:block!important;margin-bottom:22px}.minfo h1{margin-top:2px}@media(max-width:900px){.mhead{margin-bottom:16px}}</style><!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -143,12 +131,12 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1133848199634230');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1133848199634230&ev=PageView&noscript=1"
-/></noscript>
+
 <!-- End Meta Pixel Code -->
 </head><body>
-<div id="app"></div><div id="gate" class="ov hidden"></div><div id="modal" class="ov hidden"></div>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1133848199634230&ev=PageView&noscript=1"
+/></noscript><div id="app"></div><div id="gate" class="ov hidden"></div><div id="modal" class="ov hidden"></div>
 <script>
 // ===== Snitch Shop — сайт (отдельный от мини-приложения) =====
 const MANAGER_USERNAME = 'SnitchShopManager';
@@ -168,24 +156,24 @@ const T = {
  pl: {
   nav_catalog:'Katalog', nav_app:'Mini-aplikacja', nav_delivery:'Dostawa', nav_payment:'Płatność', nav_returns:'Zwrot i wymiana', nav_contact:'Kontakt', cart:'Koszyk',
   hero_h:'Vapy z dostawą<br>w całej Polsce', hero_p:'Liquidy, jednorazówki i pody. Im więcej bierzesz, tym taniej.',
-  open_catalog:'Zobacz katalog', mini_app:'Mini-aplikacja', chip1:'13 modeli', chip2:'271 smaków',
+  open_catalog:'Zobacz katalog', 
   perk1:'Smart Cena', perk1s:'Im więcej sztuk, tym niższa cena', perk2:'Płatność przy odbiorze', perk2s:'Lub kryptowaluta', perk3:'Dostawa od 25 zł', perk3s:'Paczkomat, Żabka lub kurier', perk4:'Zwrot i wymiana', perk4s:'Zasady na stronie',
-  categories:'Kategorie', all_models:'Wszystkie modele', how:'Jak zamówić', reviews:'Opinie klientów', nav_reviews:'Opinie',
+  categories:'Kategorie', how:'Jak zamówić', reviews:'Opinie klientów', nav_reviews:'Opinie',
   s1:'Wybierz smaki', s1s:'Dodaj produkty do koszyka — cena przeliczy się sama', s2:'Podaj dane dostawy', s2s:'Imię, telefon, Paczkomat, Żabka lub kurier', s3:'Napisz do menedżera', s3s:'Zamówienie jest zarezerwowane, menedżer potwierdza je w Telegramie',
   tg_q:'Otworzyć mini-aplikację w Telegramie?', tg_yes:'Tak', tg_no:'Nie',
-  tgapp:'Mini-aplikacja w Telegramie', tgapp_s:'Ten sam katalog w Telegramie — wygodniej z telefonu.', open_tg:'Otwórz w Telegramie', manager:'Menedżer', manager_s:'Pytania o dostępność, płatność i dostawę.',
-  home:'Strona główna', promo_bar:'🎁 Napisz do menedżera i odbierz gwarantowany prezent', promo_btn:'Odbierz prezent', promo_until:'Akcja do', promo_pill:'🎁 Gwarantowany prezent za wiadomość', promo_t:'Gwarantowany prezent', promo_p:'Napisz do menedżera, wybierz liczbę od 1 do 10 i odbierz bonus na następne zamówienie.', promo_msg:'Cześć! Chcę odebrać mój gwarantowany prezent 🎁', pick_model:'Wybierz model', models_n:n=>n===1?'model':n<5?'modele':'modeli', flavors_n:n=>n===1?'smak':n<5?'smaki':'smaków',
-  search:'Szukaj smaku', sale:'Promocja', out:'Wyprzedane', smart:'Smart Cena', pcs:'szt.', per_pcs:'zł/szt.', your_level:'Twój poziom',
-  cart_title:'Koszyk', cart_empty:'Koszyk pusty', cart_empty_sub:'Dodaj produkty z katalogu', positions:'Pozycji', discount:'Zniżka Smart Cena', total:'Razem', add_more:'Dodaj więcej', checkout:'Złóż zamówienie', pos_in_cart:'poz. w koszyku',
+  tgapp:'Mini-aplikacja w Telegramie', open_tg:'Otwórz w Telegramie', manager:'Menedżer', manager_s:'Pytania o dostępność, płatność i dostawę.',
+  home:'Strona główna', promo_bar:'🎁 Prezent od menedżera', promo_btn:'Odbierz prezent', promo_until:'Akcja do', promo_pill:'🎁 Gwarantowany prezent za wiadomość', promo_t:'Gwarantowany prezent', promo_p:'Napisz do menedżera, wybierz liczbę od 1 do 10 i odbierz bonus na następne zamówienie.', promo_msg:'Cześć! Chcę odebrać mój gwarantowany prezent 🎁', models_n:n=>n===1?'model':n<5?'modele':'modeli',
+  search:'Szukaj smaku', sale:'Promocja', out:'Wyprzedane', smart:'Smart Cena', pcs:'szt.', per_pcs:'zł/szt.', 
+  cart_title:'Koszyk', cart_empty:'Koszyk pusty', cart_empty_sub:'Dodaj produkty z katalogu', positions:'Pozycji', discount:'Zniżka Smart Cena', total:'Razem', add_more:'Dodaj więcej', checkout:'Złóż zamówienie', 
   upsell:(n,p,s)=>`Dodaj jeszcze <b>${n} szt.</b> → cena <b>${p} zł/szt.</b>, zaoszczędzisz <b>${s} zł</b>`,
-  order_title:'Złożenie zamówienia', your_order:'Twoje zamówienie:', saving:'Oszczędność Smart Cena', pay_section:'Metoda płatności', pay_cod:'Pobranie', pay_crypto:'Kryptowaluta',
+  order_title:'Złożenie zamówienia', your_order:'Twoje zamówienie:', saving:'Oszczędność Smart Cena', pay_section:'Metoda płatności', pay_cod:'Pobranie', cod_note:'💜 Płacisz kurierowi lub przy odbiorze — teraz nic nie płacisz.', trust1:'🔒 Dane widzi tylko menedżer', trust2:'Menedżer potwierdzi zamówienie w Telegramie', pay_crypto:'Kryptowaluta',
   crypto_hint:'Po kliknięciu przycisku poniżej — napisz do menedżera, prześle dane do płatności i potwierdzi zamówienie.', recipient:'Dane odbiorcy', delivery_section:'Sposób dostawy',
   lbl_name:'Imię i Nazwisko *', lbl_phone:'Telefon *', phone_hint:'Numer polski w formacie +48 xxx xxx xxx', lbl_city:'Miasto *', lbl_kodpacz:'Kod paczkomatu *', paczkomat_hint:'Znajdź kod na stronie InPost lub w aplikacji',
   lbl_zabka:'Adres sklepu Żabka lub kod punktu *', zabka_hint:'Ulica i numer sklepu Żabka lub kod punktu InPost', lbl_zip:'Kod pocztowy *', lbl_street:'Ulica *', lbl_building:'Numer budynku *', lbl_flat:'Numer lokalu', lbl_flat_ph:'5 (opcjonalnie)',
   d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Kurier', delivery_cost:'Cena dostawy', total_to_pay:'Razem do zapłaty', confirm:'Potwierdź dane',
   done_h:'Prawie gotowe!', done_cod:'Aby potwierdzić zamówienie, napisz do menedżera — sprawdzi wszystko i wyśle paczkę.', done_crypto:'Aby potwierdzić zamówienie i otrzymać dane do płatności, napisz do menedżera.', write_manager:'Napisz do menedżera', new_order:'Złóż nowe zamówienie',
   pay:'Płatność', delivery:'Dostawa',
-  fill_required:'Proszę wypełnić wszystkie wymagane pola (*)', fill_phone:'Podaj polski numer telefonu (9 cyfr, np. 600 123 456)', latin_only:'Użyj tylko liter łacińskich (bez cyrylicy)', fill_fullname:'Podaj imię i nazwisko', fill_zip:'Kod pocztowy w formacie 00-000', fill_kod:'Kod paczkomatu: litery łacińskie i cyfry, np. WAW01N', fill_zabka:'Podaj adres sklepu Żabka lub kod punktu',
+  fill_required:'Proszę wypełnić wszystkie wymagane pola (*)', fill_zabka:'Podaj adres sklepu Żabka lub kod punktu',
   stock_limit_partial:'Niestety, nie mamy już tyle tego smaku.', stock_limit_zero:'Ten smak został wyprzedany.', stock_checkout_error:n=>`Niestety, produktu "${n}" zabrakło w takiej ilości. Zmniejsz liczbę i spróbuj ponownie.`,
   stock_order_failed:'Nie udało się złożyć zamówienia. Spróbuj ponownie.', stock_connection_error:'Błąd połączenia z serwerem. Sprawdź internet i spróbuj ponownie.', max_limit:'Maksimum 200 sztuk w koszyku. Aby zamówić więcej, skontaktuj się z menedżerem.',
   info_h:'Dostawa, płatność, zwrot', info_s:'Najważniejsze informacje w jednym miejscu',
@@ -193,30 +181,30 @@ const T = {
   i_pay_courier:'Przy dostawie kurierem:', i_pay_pickup:'Przy odbiorze (Paczkomat/Żabka):', i_pay_crypto:'Przedpłata kryptowalutą:',
   i_ret1:'1. Napisz menedżerowi na Telegramie i opisz problem.', i_ret2:'2. Wyślij zdjęcie lub wideo pokazujące wadę produktu.',
   foot_about:'Dostawa w Polsce: Paczkomat InPost, Żabka, kurier.<br>Zamówienie potwierdza menedżer w Telegramie.', foot_info:'Informacje', foot_contact:'Kontakt', foot_age:'Strona tylko dla osób pełnoletnich (18+).',
-  age_title:'Czy masz ukończone 18 lat?', age_text:'Produkty zawierają nikotynę, która uzależnia. Sprzedaż tylko osobom pełnoletnim.', age_yes:'Tak, mam 18+', age_no:'Nie', sorry:'Przykro nam', sorry_text:'Strona tylko dla osób pełnoletnich.', pick_lang:'Wybierz język', ok:'OK',
-  msg_greeting:'Dzień dobry, proszę o potwierdzenie zamówienia', order_word:'ZAMÓWIENIE', price_word:'CENA', lang_btn:'RU', from:'od', tab_hit:'Hit',
+  age_title:'Czy masz ukończone 18 lat?', age_yes:'Tak, mam 18+', age_no:'Nie', sorry:'Przykro nam', sorry_text:'Strona tylko dla osób pełnoletnich.', ok:'OK',
+  msg_greeting:'Dzień dobry, proszę o potwierdzenie zamówienia', from:'od', 
  },
  ru: {
   nav_catalog:'Каталог', nav_app:'Мини-приложение', nav_delivery:'Доставка', nav_payment:'Оплата', nav_returns:'Возврат и замена', nav_contact:'Контакты', cart:'Корзина',
   hero_h:'Вейпы с доставкой<br>по всей Польше', hero_p:'Жидкости, одноразки и поды. Чем больше берёшь, тем дешевле.',
-  open_catalog:'Открыть каталог', mini_app:'Мини-приложение', chip1:'13 моделей', chip2:'271 вкус',
+  open_catalog:'Открыть каталог', 
   perk1:'Smart Cena', perk1s:'Чем больше штук, тем ниже цена', perk2:'Оплата при получении', perk2s:'Или криптовалюта', perk3:'Доставка от 25 zł', perk3s:'Paczkomat, Żabka или курьер', perk4:'Возврат и замена', perk4s:'Условия на странице',
-  categories:'Категории', all_models:'Все модели', how:'Как заказать', reviews:'Отзывы клиентов', nav_reviews:'Отзывы',
+  categories:'Категории', how:'Как заказать', reviews:'Отзывы клиентов', nav_reviews:'Отзывы',
   s1:'Выберите вкусы', s1s:'Добавьте товары в корзину, цена пересчитается сама', s2:'Заполните доставку', s2s:'Имя, телефон, Paczkomat, Żabka или курьер', s3:'Напишите менеджеру', s3s:'Заказ резервируется, менеджер подтверждает в Telegram',
   tg_q:'Открыть мини-приложение в Telegram?', tg_yes:'Да', tg_no:'Нет',
-  tgapp:'Мини-приложение в Telegram', tgapp_s:'Тот же каталог внутри Telegram — быстрее с телефона.', open_tg:'Открыть в Telegram', manager:'Менеджер', manager_s:'Вопросы по наличию, оплате и доставке.',
-  home:'Главная', promo_bar:'🎁 Напиши менеджеру и получи гарантированный подарок', promo_btn:'Получить подарок', promo_until:'Акция до', promo_pill:'🎁 Гарантированный подарок за сообщение', promo_t:'Гарантированный подарок', promo_p:'Напиши менеджеру, выбери число от 1 до 10 и получи бонус на следующий заказ.', promo_msg:'Привет! Хочу забрать свой гарантированный подарок 🎁', pick_model:'Выберите модель', models_n:n=>n===1?'модель':n<5?'модели':'моделей', flavors_n:n=>n===1?'вкус':n<5?'вкуса':'вкусов',
-  search:'Поиск по вкусам', sale:'Акция', out:'Нет в наличии', smart:'Smart Cena', pcs:'шт.', per_pcs:'zł/шт.', your_level:'Ваш уровень',
-  cart_title:'Корзина', cart_empty:'Корзина пуста', cart_empty_sub:'Добавьте товары из каталога', positions:'Позиций', discount:'Скидка Smart Cena', total:'Итого', add_more:'Добавить ещё', checkout:'Оформить заказ', pos_in_cart:'поз. в корзине',
+  tgapp:'Мини-приложение в Telegram', open_tg:'Открыть в Telegram', manager:'Менеджер', manager_s:'Вопросы по наличию, оплате и доставке.',
+  home:'Главная', promo_bar:'🎁 Подарок от менеджера', promo_btn:'Получить подарок', promo_until:'Акция до', promo_pill:'🎁 Гарантированный подарок за сообщение', promo_t:'Гарантированный подарок', promo_p:'Напиши менеджеру, выбери число от 1 до 10 и получи бонус на следующий заказ.', promo_msg:'Привет! Хочу забрать свой гарантированный подарок 🎁', models_n:n=>n===1?'модель':n<5?'модели':'моделей',
+  search:'Поиск по вкусам', sale:'Акция', out:'Нет в наличии', smart:'Smart Cena', pcs:'шт.', per_pcs:'zł/шт.', 
+  cart_title:'Корзина', cart_empty:'Корзина пуста', cart_empty_sub:'Добавьте товары из каталога', positions:'Позиций', discount:'Скидка Smart Cena', total:'Итого', add_more:'Добавить ещё', checkout:'Оформить заказ', 
   upsell:(n,p,s)=>`Добавьте ещё <b>${n} шт.</b> → цена <b>${p} zł/шт.</b>, сэкономите <b>${s} zł</b>`,
-  order_title:'Оформление заказа', your_order:'Ваш заказ:', saving:'Экономия Smart Cena', pay_section:'Способ оплаты', pay_cod:'Оплата при получении', pay_crypto:'Криптовалюта',
+  order_title:'Оформление заказа', your_order:'Ваш заказ:', saving:'Экономия Smart Cena', pay_section:'Способ оплаты', pay_cod:'Оплата при получении', cod_note:'💜 Платите курьеру или при получении — сейчас ничего платить не нужно.', trust1:'🔒 Данные видит только менеджер', trust2:'Менеджер подтвердит заказ в Telegram', pay_crypto:'Криптовалюта',
   crypto_hint:'После нажатия кнопки ниже напишите менеджеру — он пришлёт данные для оплаты и подтвердит заказ.', recipient:'Данные получателя', delivery_section:'Способ доставки',
   lbl_name:'Имя и фамилия *', lbl_phone:'Телефон *', phone_hint:'Польский номер в формате +48 xxx xxx xxx', lbl_city:'Город *', lbl_kodpacz:'Код пачкомата *', paczkomat_hint:'Найдите код на сайте InPost или в приложении',
   lbl_zabka:'Адрес магазина Żabka или код пункта *', zabka_hint:'Улица и номер магазина Żabka или код пункта InPost', lbl_zip:'Почтовый индекс *', lbl_street:'Улица *', lbl_building:'Номер дома *', lbl_flat:'Номер квартиры', lbl_flat_ph:'5 (необязательно)',
   d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Курьер', delivery_cost:'Стоимость доставки', total_to_pay:'Итого к оплате', confirm:'Подтвердить данные',
   done_h:'Почти готово!', done_cod:'Чтобы подтвердить заказ, напишите менеджеру — он всё проверит и отправит посылку.', done_crypto:'Чтобы подтвердить заказ и получить данные для оплаты, напишите менеджеру.', write_manager:'Написать менеджеру', new_order:'Оформить новый заказ',
   pay:'Оплата', delivery:'Доставка',
-  fill_required:'Пожалуйста, заполните все обязательные поля (*)', fill_phone:'Укажите польский номер (9 цифр, например 600 123 456)', latin_only:'Используйте только латиницу (без кириллицы)', fill_fullname:'Укажите имя и фамилию', fill_zip:'Почтовый индекс в формате 00-000', fill_kod:'Код пачкомата: латинские буквы и цифры, например WAW01N', fill_zabka:'Укажите адрес магазина Żabka или код пункта',
+  fill_required:'Пожалуйста, заполните все обязательные поля (*)', fill_zabka:'Укажите адрес магазина Żabka или код пункта',
   stock_limit_partial:'Больше этого вкуса, к сожалению, нет в наличии.', stock_limit_zero:'Этот вкус временно закончился.', stock_checkout_error:n=>`К сожалению, товара "${n}" уже не хватает в нужном количестве. Уменьшите количество и попробуйте снова.`,
   stock_order_failed:'Не удалось оформить заказ. Попробуйте ещё раз.', stock_connection_error:'Ошибка соединения с сервером. Проверьте интернет и попробуйте снова.', max_limit:'Максимум 200 штук в корзине. Для большего количества напишите менеджеру.',
   info_h:'Доставка, оплата, возврат', info_s:'Самое важное в одном месте',
@@ -224,8 +212,8 @@ const T = {
   i_pay_courier:'При доставке курьером:', i_pay_pickup:'При самовывозе (Paczkomat/Żabka):', i_pay_crypto:'Предоплата криптовалютой:',
   i_ret1:'1. Напиши менеджеру в Telegram и опиши проблему.', i_ret2:'2. Отправь фото или видео, показывающее дефект товара.',
   foot_about:'Доставка по Польше: InPost Paczkomat, Żabka, курьер.<br>Заказ подтверждает менеджер в Telegram.', foot_info:'Информация', foot_contact:'Связь', foot_age:'Сайт только для лиц старше 18 лет.',
-  age_title:'Вам есть 18 лет?', age_text:'Товары содержат никотин, вызывающий привыкание. Продажа только лицам старше 18 лет.', age_yes:'Да, мне 18+', age_no:'Нет', sorry:'Сожалеем', sorry_text:'Сайт только для лиц старше 18 лет.', pick_lang:'Выберите язык', ok:'OK',
-  msg_greeting:'Dzień dobry, proszę o potwierdzenie zamówienia', order_word:'ЗАКАЗ', price_word:'CENA', lang_btn:'PL', from:'от', tab_hit:'Хит',
+  age_title:'Вам есть 18 лет?', age_yes:'Да, мне 18+', age_no:'Нет', sorry:'Сожалеем', sorry_text:'Сайт только для лиц старше 18 лет.', ok:'OK',
+  msg_greeting:'Dzień dobry, proszę o potwierdzenie zamówienia', from:'от', 
  }
 };
 let lang = 'pl';
@@ -236,7 +224,7 @@ const PROMO = { on: true, until: '2026-11-20' };
 const promoOn = () => PROMO.on && new Date() <= new Date(PROMO.until + 'T23:59:59');
 const promoLink = () => `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(t('promo_msg'))}`;
 const promoDate = () => { const p = PROMO.until.split('-'); return p[2] + '.' + p[1]; };
-const promoBar = () => promoOn() ? `<div class="pbar"><span>${t('promo_bar')} <small>· ${t('promo_until')} ${promoDate()}</small></span><a href="${promoLink()}" target="_blank" rel="noopener" data-act="mgr">${t('promo_btn')}</a></div>` : '';
+const promoBar = () => promoOn() ? `<div class="pbar"><span>${t('promo_bar')}<small>${t('promo_until')} ${promoDate()}</small></span><a href="${promoLink()}" target="_blank" rel="noopener" data-act="mgr">${t('promo_btn')}</a></div>` : '';
 const promoPill = () => promoOn() ? `<div class="ppill">${t('promo_pill')}</div>` : '';
 const promoBox = () => promoOn() ? `<div class="pbox"><b>${t('promo_t')}</b><p>${t('promo_p')} <small>(${t('promo_until')} ${promoDate()})</small></p><a class="btn" href="${promoLink()}" target="_blank" rel="noopener" data-act="mgr">${t('promo_btn')}</a></div>` : '';
 const t = (k, ...a) => { const v = (T[lang][k] ?? T.pl[k] ?? k); return typeof v === 'function' ? v(...a) : v; };
@@ -719,16 +707,6 @@ async function loadStock(model) {
 }
 const stockOf = key => { const sku = SKU_MAP[key]; return sku && (sku in stockCache) ? stockCache[sku] : null; };
 function nameOf(sku) { const it = Object.values(cart).find(i => SKU_MAP[i.key] === sku); return it ? `${it.modelName} ${it.flavor}` : sku; }
-async function checkStock() {
-  const need = {}; Object.values(cart).forEach(i => { const s = SKU_MAP[i.key]; if (s) need[s] = (need[s]||0) + i.qty; });
-  const skus = Object.keys(need); if (!skus.length) return { ok: true };
-  try {
-    const r = await fetch(`${PROXY_URL}/stock-bulk?skus=${encodeURIComponent(skus.join(','))}`), d = await r.json();
-    if (!r.ok || !d.results) return { ok:false, message:t('stock_connection_error') };
-    for (const s of skus) if ((d.results[s] ?? 0) < need[s]) return { ok:false, message:t('stock_checkout_error', nameOf(s)) };
-    return { ok: true };
-  } catch(e) { return { ok:false, message:t('stock_connection_error') }; }
-}
 async function createOrder() {
   const T_ = pricingQty();
   const products = Object.values(cart).filter(i => SKU_MAP[i.key]).map(i => ({ name:`${i.modelName} ${i.flavor}`, sku:SKU_MAP[i.key], quantity:i.qty, price:unitPrice(i,T_) }));
@@ -736,7 +714,7 @@ async function createOrder() {
   try {
     const r = await fetch(`${PROXY_URL}/order`, { method:'POST', keepalive: true, headers:{'Content-Type':'application/json'}, body: JSON.stringify({ buyer: pending.buyer, shipping: pending.shipping, comment: pending.msg || '', products, campaign: getCampaign(), uid: getUid() }) });
     const d = await r.json();
-    if (!r.ok) return { ok:false, message: d.error === 'insufficient_stock' ? t('stock_checkout_error', nameOf(d.sku)) : t('stock_order_failed') };
+    if (!r.ok) return { ok:false, stockSku: d.error === 'insufficient_stock' ? d.sku : null, message: t('stock_order_failed') };
     return { ok: true };
   } catch(e) { return { ok:false, message:t('stock_connection_error') }; }
 }
@@ -783,7 +761,7 @@ const REVIEWS = [
   { name: "Iga P", text_pl: "Naprawdę polecam, dostawa w jeden dzień bezpieczna. Smak świetny. Polecaaam" },
   { name: "Piotrek C", text_pl: "Bardzo duży asortyment, serdecznie polecam Snitcha, szybko wysyłka, dobry kontakt z Panią , napewno będę stałym klientem" }
 ];
-let pending = null, orderCreated = false, lastSig = '', submitTracked = false, busy = false, payMethod = 'cod', delivery = 'paczkomat', flavorFilter = '';
+let pending = null, orderCreated = false, lastSig = '', submitTracked = false, busy = false, payMethod = 'cod', delivery = 'paczkomat';
 const form = {};   // значения полей формы
 // ---------- шаблоны ----------
 function groupCart() {
@@ -857,7 +835,7 @@ function cartPage() {
   return `<div class="wrap pg"><h1>${t('cart_title')}</h1><div class="sub">${cartCount()} ${t('pcs')}</div><div class="two"><div>${rows}<a class="btn ghost" href="#/" style="margin-top:6px">${ico('plus')} ${t('add_more')}</a></div>
   <aside class="sum"><div class="l"><span>${t('positions')}</span><b>${items.length}</b></div>${sv>0?`<div class="l"><span>${t('discount')}</span><b class="mint">−${fmt(sv)}</b></div>`:''}${upsell()}<div class="tot"><span>${t('total')}</span><span>${fmt(cartTotal())}</span></div><a class="btn big wide" href="#/order" data-act="checkout">${t('checkout')} ${ico('arrow')}</a></aside></div></div>`;
 }
-const field = (id, label, ph='', hint='', type='text', mode='') => `<label for="${id}">${label}</label><input class="in" id="${id}" type="${type}" ${mode?`inputmode="${mode}"`:''} placeholder="${esc(ph)}" value="${esc(form[id] || '')}" autocomplete="off">${hint?`<div class="hint">${hint}</div>`:''}`;
+const field = (id, label, ph='', hint='', type='text', mode='') => `<label for="${id}">${label.replace('*','<i>*</i>')}</label><input class="in" id="${id}" type="${type}" ${mode?`inputmode="${mode}"`:''} placeholder="${esc(ph)}" value="${esc(form[id] || '')}" autocomplete="off">${hint?`<div class="hint">${hint}</div>`:''}`;
 function orderPage() {
   if (!cartCount()) return cartPage();
   const lines = groupCart().map(g => `<div class="ol"><b>${esc(g.modelName)}</b>${g.items.map(i => `<span><span>${esc(i.flavor)}</span><em>× ${i.qty}</em></span>`).join('')}</div>`).join('');
@@ -865,10 +843,10 @@ function orderPage() {
   const dl = { paczkomat: field('f-kodpacz', t('lbl_kodpacz'), 'WAW123M', t('paczkomat_hint')), zabka: field('f-zabka', t('lbl_zabka'), '', t('zabka_hint')),
     kurier: field('f-kod', t('lbl_zip'), '00-001', '', 'text', 'numeric') + field('f-ulica', t('lbl_street')) + field('f-budynek', t('lbl_building'), '10') + field('f-lokal', t('lbl_flat'), t('lbl_flat_ph')) }[delivery];
   const body = payMethod === 'crypto' ? `<p class="sub" style="margin-top:14px">${t('crypto_hint')}</p>` :
-   `<h3>${t('recipient')}</h3>${field('f-name', t('lbl_name'))}${field('f-phone', t('lbl_phone'), '+48 600 123 456', t('phone_hint'), 'tel', 'tel')}${field('f-miasto', t('lbl_city'))}
+   `<h3>${t('recipient')}</h3>${field('f-name', t('lbl_name'), 'Jan Kowalski')}${field('f-phone', t('lbl_phone'), '+48 600 123 456', t('phone_hint'), 'tel', 'tel')}${field('f-miasto', t('lbl_city'), 'Warszawa')}
     <h3 style="margin-top:24px">${t('delivery_section')}</h3><div class="seg s3">${['paczkomat','zabka','kurier'].map(d => `<div class="${delivery===d?'on':''}" data-act="deliv" data-v="${d}" role="button" tabindex="0">${t('d_'+d)}</div>`).join('')}</div>${dl}`;
-  return `<div class="wrap pg">${back('#/cart', t('cart_title'))}<h1>${t('order_title')}</h1><div class="two"><div class="fm"><h3>${t('pay_section')}</h3><div class="seg"><div class="${payMethod==='cod'?'on':''}" data-act="pay" data-v="cod" role="button" tabindex="0">${t('pay_cod')}</div><div class="${payMethod==='crypto'?'on':''}" data-act="pay" data-v="crypto" role="button" tabindex="0">${t('pay_crypto')}</div></div>${body}</div>
-  <aside class="sum"><b class="sh">${t('your_order')}</b>${lines}${sv>0?`<div class="l"><span>${t('saving')}</span><b class="mint">${fmt(sv)}</b></div>`:''}<div class="l"><span>${t('delivery_cost')}</span><b>${fmt(dc)}</b></div><div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(total + dc)}</span></div><a class="btn big wide" data-act="confirm" role="button" tabindex="0">${t('confirm')}</a></aside></div></div>`;
+  return `<div class="wrap pg">${back('#/cart', t('cart_title'))}<h1>${t('order_title')}</h1><div class="two"><div class="fm"><h3>${t('pay_section')}</h3><div class="seg"><div class="${payMethod==='cod'?'on':''}" data-act="pay" data-v="cod" role="button" tabindex="0">${t('pay_cod')}</div><div class="${payMethod==='crypto'?'on':''}" data-act="pay" data-v="crypto" role="button" tabindex="0">${t('pay_crypto')}</div></div>${payMethod==='cod'?`<div class="cod">${t('cod_note')}</div>`:''}${body}</div>
+  <aside class="sum"><b class="sh">${t('your_order')}</b>${lines}${sv>0?`<div class="l"><span>${t('saving')}</span><b class="mint">${fmt(sv)}</b></div>`:''}<div class="l"><span>${t('delivery_cost')}</span><b>${fmt(dc)}</b></div><div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(total + dc)}</span></div><a class="btn big wide" data-act="confirm" role="button" tabindex="0">${t('confirm')}</a><div class="trust"><span>${t('trust1')}</span><span>${t('trust2')}</span></div></aside></div></div>`;
 }
 function donePage() {
   if (!pending) return cartPage();
@@ -892,17 +870,6 @@ function applyInfo() {
 function infoPage() { return `<div class="wrap pg"><h1>${t('info_h')}</h1><div class="sub">${t('info_s')}</div>${infoBlock(route().a)}</div>`; }
 const notFound = () => `<div class="wrap"><div class="center"><h1>404</h1><a class="btn big" href="#/">${t('home')}</a></div></div>`;
 // ---------- отрисовка ----------
-let _enter = true, _prevCount = cartCount(), _popKey = '', _io = null;
-const REDUCE = true;   // анимации выключены
-if (!REDUCE && 'IntersectionObserver' in window) { document.documentElement.classList.add('rv-on'); _io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); _io.unobserve(e.target); } }), { threshold: 0.06 }); }
-function afterRender(app) {
-  if (REDUCE) return;
-  if (_enter) { app.querySelector('.view')?.classList.add('enter'); _enter = false; }
-  const cnt = cartCount();
-  if (cnt !== _prevCount) { app.querySelector('.cartbtn')?.classList.add('bump'); if (_prevCount === 0) app.querySelector('.cbar')?.classList.add('cbar-in'); _prevCount = cnt; }
-  if (_popKey) { app.querySelectorAll('[data-act=inc]').forEach(b => { if (b.dataset.key === _popKey) b.parentElement.querySelector('em')?.classList.add('pop'); }); _popKey = ''; }
-  if (_io) app.querySelectorAll('.rv:not(.in)').forEach(el => _io.observe(el));
-}
 function renderPage() {
   const r = route(), app = document.getElementById('app');
   const focusId = document.activeElement && document.activeElement.id, selStart = document.activeElement?.selectionStart;
@@ -917,14 +884,12 @@ function renderPage() {
     default: body = home();
   }
   app.innerHTML = promoBar() + header(r) + `<main class="view">${body}</main>` + footer() + cartBar(r);
-  afterRender(app);
   if (focusId) { const el = document.getElementById(focusId); if (el) { el.focus(); try { el.setSelectionRange(selStart, selStart); } catch(e) {} } }
 }
 let lastKey = '';
 function onRoute() {
-  _enter = true;
   const r = route(), k = r.page + '/' + r.a;
-  if (r.page === 'model') { const f = findModel(r.a); if (f) { flavorFilter = k === lastKey ? flavorFilter : ''; loadStock(f.m); } }
+  if (r.page === 'model') { const f = findModel(r.a); if (f) { loadStock(f.m); } }
   if (r.page === 'cart' && k !== lastKey) track('cart_open');
   if (r.page === 'order' && k !== lastKey) track('checkout_start');
   renderPage();
@@ -960,7 +925,7 @@ function setQty(key, d) {
   }
   if (next === 0) delete cart[key]; else cart[key] = { key, flavor, model: mid, modelName: f.m.name, category: catName(f.cat), catId: f.cat.id, qty: next };
   if (d > 0) track('add_to_cart', { m: mid, f: flavor });
-  _popKey = key; saveCart(); renderPage();
+  saveCart(); renderPage();
 }
 const LAT = /^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż0-9 .,'\/\-]+$/;
 const val = id => (document.getElementById(id)?.value || '').trim();
@@ -1002,7 +967,7 @@ async function confirmOrder() {
       busy = false;
       if (r.ok) return;
       orderCreated = false; lastSig = ''; pending = null; cart = backup; saveCart();
-      showModal(r.message); go('#/order');
+      showModal(r.stockSku ? t('stock_checkout_error', nameOf(r.stockSku)) : r.message); go('#/order');
     });
   }
   if (btn) btn.style.opacity = 1;
@@ -1053,8 +1018,7 @@ document.addEventListener('click', ev => {
   if (a !== 'menu') document.getElementById('mmenu')?.classList.remove('open');
 });
 document.addEventListener('input', ev => {
-  if (ev.target.id === 'flt') { flavorFilter = ev.target.value; renderPage(); }
-  else if (typeof ev.target.id === 'string' && ev.target.id.indexOf('f-') === 0) { form[ev.target.id] = ev.target.value; }
+  if (typeof ev.target.id === 'string' && ev.target.id.indexOf('f-') === 0) { form[ev.target.id] = ev.target.value; }
 });
 document.addEventListener('keydown', ev => { if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('[role=button][data-act]')) { ev.preventDefault(); ev.target.click(); } });
 window.addEventListener('hashchange', onRoute);
