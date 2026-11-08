@@ -988,8 +988,7 @@ async function confirmOrder() {
     msg += `Pobranie\nZAMÓWIENIE\n\n${ol}TOTAL: ${count} sztuk\nCENA: ${total} Zł\n\nImię i Nazwisko: ${name}\nTelefon: ${phone}\n${dl}\nCena dostawy: ${dc} Zł\nRazem do zapłaty: ${total}+${dc}=${total+dc} Zł`;
   }
   const btn = document.querySelector('[data-act="confirm"]'); if (btn) btn.style.opacity = .6;
-  const sc = await checkStock(); if (btn) btn.style.opacity = 1;
-  if (!sc.ok) { showModal(sc.message); return; }
+  // отдельную проверку остатков здесь не делаем: воркер проверяет их при создании заказа (это вдвое быстрее)
   pending = { buyer, shipping, msg, pay: payMethod, sum: total, total: total + dc, deliveryLabel, link: `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(msg)}` };
   // заказ создаём сразу (KeyCRM + копия менеджеру в Telegram), не дожидаясь кнопки «Napisz do menedżera».
   // Если клиент вернулся назад и подтвердил тот же заказ ещё раз — второй не создаём.
@@ -1002,6 +1001,7 @@ async function confirmOrder() {
     orderCreated = true; lastSig = msg; submitTracked = false;
     cart = {}; saveCart(); // заказ уже оформлен — корзину очищаем, чтобы клиент не оформил его повторно
   }
+  if (btn) btn.style.opacity = 1;
   go('#/done');
 }
 function sendToManager(ev) {
