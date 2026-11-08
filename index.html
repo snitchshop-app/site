@@ -77,7 +77,10 @@ h1{font-size:clamp(30px,4.6vw,58px);line-height:1.04;font-weight:800;letter-spac
 .gr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0}.gr+.gr{border-top:1px solid rgba(255,255,255,.04)}.gr>span{min-width:0;font-size:15px}
 .sum{background:var(--s1);border-radius:22px;padding:22px;position:sticky;top:84px}.sum.flat{position:static;text-align:left;margin:22px 0 18px}.sum .l{display:flex;justify-content:space-between;gap:12px;padding:6px 0;color:var(--mut);font-size:15px}.sum .l b{color:var(--text)}.mint{color:var(--mt)!important}
 .tot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin:10px 0 16px;padding-top:14px;font-size:21px;font-weight:700}.sum .btn.big{width:100%}
-.up{background:rgba(115,72,157,.18);color:var(--mt);border-radius:12px;padding:11px 14px;font-size:14px;margin:10px 0}.up b{color:#fff}
+.up{background:linear-gradient(135deg,rgba(176,138,216,.22),rgba(176,138,216,.10));box-shadow:inset 0 0 0 1.5px rgba(176,138,216,.55);color:#efe4fb;border-radius:14px;padding:13px 15px;font-size:14.5px;margin:10px 0}.up b{color:#fff}
+.quick{margin-top:10px;width:100%;min-height:52px;border-radius:99px;background:transparent;color:#e7dcf6;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;padding:8px 14px;line-height:1.25;box-shadow:inset 0 0 0 1.5px rgba(176,138,216,.6);cursor:pointer;text-align:center}.quick small{font-weight:400;font-size:12px;color:#aebcc0}.quick:hover{background:rgba(176,138,216,.10)}
+.tr3{margin-top:14px;display:grid;gap:8px;font-size:13px;color:#aebcc0}.tr3 span:before{content:'\2713';color:var(--mt);margin-right:8px;font-weight:700}.rv1{margin-top:14px;background:#161f24;border-radius:14px;padding:12px 14px;font-size:13px;color:#cdd9db;line-height:1.45}.rv1 b{color:#fff;display:block;margin-bottom:3px;font-size:12px;opacity:.85}
+#f-kodpacz+.hint{background:rgba(176,138,216,.10);border-radius:10px;padding:8px 11px;font-size:12.5px;color:#d9c7ee;margin-top:8px}.up b{color:#fff}
 .sh{display:block;font-family:Poppins,sans-serif;margin-bottom:8px}.ol{padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}.ol b{display:block;font-size:14px}.ol>span{display:flex;justify-content:space-between;color:var(--mut);font-size:14px}.ol em{font-style:normal;color:var(--text)}
 .fm{background:var(--s1);border-radius:22px;padding:24px}.fm h3{font-size:16px;font-weight:600;margin-bottom:10px}
 .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}.seg.s3{grid-template-columns:1fr 1fr 1fr;margin-bottom:6px}.seg div{min-height:50px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:var(--s2);font-weight:600;font-size:15px;cursor:pointer;text-align:center;padding:0 6px}.seg .on{background:var(--mint);color:var(--onm)}
@@ -166,9 +169,9 @@ const T = {
   search:'Szukaj smaku', sale:'Promocja', out:'Wyprzedane', smart:'Smart Cena', pcs:'szt.', per_pcs:'zł/szt.', 
   cart_title:'Koszyk', cart_empty:'Koszyk pusty', cart_empty_sub:'Dodaj produkty z katalogu', positions:'Pozycji', discount:'Zniżka Smart Cena', total:'Razem', add_more:'Dodaj więcej', checkout:'Złóż zamówienie', 
   upsell:(n,p,s)=>`Dodaj jeszcze <b>${n} szt.</b> → cena <b>${p} zł/szt.</b>, zaoszczędzisz <b>${s} zł</b>`,
-  order_title:'Złożenie zamówienia', your_order:'Twoje zamówienie:', saving:'Oszczędność Smart Cena', pay_section:'Metoda płatności', pay_cod:'Pobranie', cod_note:'💜 Płacisz kurierowi lub przy odbiorze — teraz nic nie płacisz.', trust1:'🔒 Dane widzi tylko menedżer', trust2:'Menedżer potwierdzi zamówienie w Telegramie', pay_crypto:'Kryptowaluta',
+  order_title:'Złożenie zamówienia', your_order:'Twoje zamówienie:', saving:'Oszczędność Smart Cena', pay_section:'Metoda płatności', pay_cod:'Pobranie', cod_note:'Płacisz kurierowi lub przy odbiorze — teraz nic nie płacisz.', quick_btn:'Zamów bez podawania danych', quick_sub:'Zamówienie trafi do menedżera, dane podasz w czacie', quick_btn2:'Wolę bez formularza', quick_sub2:'Napisz do menedżera — dane podasz w czacie', tr_cod:'Płatność przy odbiorze', tr_ship:'Dostawa od 25 zł · Paczkomat, Żabka, kurier', tr_ret:'Zwrot i wymiana na stronie', order_no:'Numer zamówienia', done_quick:'Napisz do menedżera — poprosi o dane i potwierdzi zamówienie. Podaj numer zamówienia.', trust1:'Dane widzi tylko menedżer', trust2:'Menedżer potwierdzi zamówienie w Telegramie', pay_crypto:'Kryptowaluta',
   crypto_hint:'Po kliknięciu przycisku poniżej — napisz do menedżera, prześle dane do płatności i potwierdzi zamówienie.', recipient:'Dane odbiorcy', delivery_section:'Sposób dostawy',
-  lbl_name:'Imię i Nazwisko *', lbl_phone:'Telefon *', phone_hint:'Numer polski w formacie +48 xxx xxx xxx', lbl_city:'Miasto *', lbl_kodpacz:'Kod paczkomatu *', paczkomat_hint:'Znajdź kod na stronie InPost lub w aplikacji',
+  lbl_name:'Imię i Nazwisko *', lbl_phone:'Telefon *', phone_hint:'Numer polski w formacie +48 xxx xxx xxx', lbl_city:'Miasto *', lbl_kodpacz:'Kod paczkomatu (opcjonalnie)', paczkomat_hint:'Nie znasz kodu? Zostaw puste — menedżer pomoże wybrać paczkomat.',
   lbl_zabka:'Adres sklepu Żabka lub kod punktu *', zabka_hint:'Ulica i numer sklepu Żabka lub kod punktu InPost', lbl_zip:'Kod pocztowy *', lbl_street:'Ulica *', lbl_building:'Numer budynku *', lbl_flat:'Numer lokalu', lbl_flat_ph:'5 (opcjonalnie)',
   d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Kurier', delivery_cost:'Cena dostawy', total_to_pay:'Razem do zapłaty', confirm:'Potwierdź dane',
   done_h:'Prawie gotowe!', done_cod:'Aby potwierdzić zamówienie, napisz do menedżera — sprawdzi wszystko i wyśle paczkę.', done_crypto:'Aby potwierdzić zamówienie i otrzymać dane do płatności, napisz do menedżera.', write_manager:'Napisz do menedżera', new_order:'Złóż nowe zamówienie',
@@ -197,9 +200,9 @@ const T = {
   search:'Поиск по вкусам', sale:'Акция', out:'Нет в наличии', smart:'Smart Cena', pcs:'шт.', per_pcs:'zł/шт.', 
   cart_title:'Корзина', cart_empty:'Корзина пуста', cart_empty_sub:'Добавьте товары из каталога', positions:'Позиций', discount:'Скидка Smart Cena', total:'Итого', add_more:'Добавить ещё', checkout:'Оформить заказ', 
   upsell:(n,p,s)=>`Добавьте ещё <b>${n} шт.</b> → цена <b>${p} zł/шт.</b>, сэкономите <b>${s} zł</b>`,
-  order_title:'Оформление заказа', your_order:'Ваш заказ:', saving:'Экономия Smart Cena', pay_section:'Способ оплаты', pay_cod:'Оплата при получении', cod_note:'💜 Платите курьеру или при получении — сейчас ничего платить не нужно.', trust1:'🔒 Данные видит только менеджер', trust2:'Менеджер подтвердит заказ в Telegram', pay_crypto:'Криптовалюта',
+  order_title:'Оформление заказа', your_order:'Ваш заказ:', saving:'Экономия Smart Cena', pay_section:'Способ оплаты', pay_cod:'Оплата при получении', cod_note:'Платите курьеру или при получении — сейчас ничего платить не нужно.', quick_btn:'Заказать без ввода данных', quick_sub:'Заказ уйдёт менеджеру, данные вы назовёте в чате', quick_btn2:'Лучше без формы', quick_sub2:'Напишите менеджеру — данные назовёте в чате', tr_cod:'Оплата при получении', tr_ship:'Доставка от 25 zł · Paczkomat, Żabka, курьер', tr_ret:'Возврат и обмен — правила на сайте', order_no:'Номер заказа', done_quick:'Напишите менеджеру — он запросит данные и подтвердит заказ. Назовите номер заказа.', trust1:'Данные видит только менеджер', trust2:'Менеджер подтвердит заказ в Telegram', pay_crypto:'Криптовалюта',
   crypto_hint:'После нажатия кнопки ниже напишите менеджеру — он пришлёт данные для оплаты и подтвердит заказ.', recipient:'Данные получателя', delivery_section:'Способ доставки',
-  lbl_name:'Имя и фамилия *', lbl_phone:'Телефон *', phone_hint:'Польский номер в формате +48 xxx xxx xxx', lbl_city:'Город *', lbl_kodpacz:'Код пачкомата *', paczkomat_hint:'Найдите код на сайте InPost или в приложении',
+  lbl_name:'Имя и фамилия *', lbl_phone:'Телефон *', phone_hint:'Польский номер в формате +48 xxx xxx xxx', lbl_city:'Город *', lbl_kodpacz:'Код пачкомата (необязательно)', paczkomat_hint:'Не знаете код? Оставьте пустым — менеджер поможет выбрать пачкомат.',
   lbl_zabka:'Адрес магазина Żabka или код пункта *', zabka_hint:'Улица и номер магазина Żabka или код пункта InPost', lbl_zip:'Почтовый индекс *', lbl_street:'Улица *', lbl_building:'Номер дома *', lbl_flat:'Номер квартиры', lbl_flat_ph:'5 (необязательно)',
   d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Курьер', delivery_cost:'Стоимость доставки', total_to_pay:'Итого к оплате', confirm:'Подтвердить данные',
   done_h:'Почти готово!', done_cod:'Чтобы подтвердить заказ, напишите менеджеру — он всё проверит и отправит посылку.', done_crypto:'Чтобы подтвердить заказ и получить данные для оплаты, напишите менеджеру.', write_manager:'Написать менеджеру', new_order:'Оформить новый заказ',
@@ -833,7 +836,7 @@ function cartPage() {
     return `<div class="grp"><div class="gh"><div class="th">${imgTag(f?.m.img || '', g.modelName)}</div><div class="nm"><b>${esc(g.modelName)}</b><small>${g.qty} ${t('pcs')} · ${up} ${t('per_pcs')}</small></div><div class="sm">${fmt(g.sum)}</div></div>${g.items.map(i => `<div class="gr"><span>${esc(i.flavor)}</span><div class="qty"><button data-act="dec" data-key="${esc(i.key)}" aria-label="−">${ico('minus')}</button><em>${i.qty}</em><button data-act="inc" data-key="${esc(i.key)}" aria-label="+">${ico('plus')}</button></div></div>`).join('')}</div>`; }).join('');
   const sv = cartSavings();
   return `<div class="wrap pg"><h1>${t('cart_title')}</h1><div class="sub">${cartCount()} ${t('pcs')}</div><div class="two"><div>${rows}<a class="btn ghost" href="#/" style="margin-top:6px">${ico('plus')} ${t('add_more')}</a></div>
-  <aside class="sum"><div class="l"><span>${t('positions')}</span><b>${items.length}</b></div>${sv>0?`<div class="l"><span>${t('discount')}</span><b class="mint">−${fmt(sv)}</b></div>`:''}${upsell()}<div class="tot"><span>${t('total')}</span><span>${fmt(cartTotal())}</span></div><a class="btn big wide" href="#/order" data-act="checkout">${t('checkout')} ${ico('arrow')}</a></aside></div></div>`;
+  <aside class="sum"><div class="l"><span>${t('positions')}</span><b>${items.length}</b></div>${sv>0?`<div class="l"><span>${t('discount')}</span><b class="mint">−${fmt(sv)}</b></div>`:''}${upsell()}<div class="tot"><span>${t('total')}</span><span>${fmt(cartTotal())}</span></div><a class="btn big wide" href="#/order" data-act="checkout">${t('checkout')} ${ico('arrow')}</a><a class="quick" data-act="quick" role="button" tabindex="0">${t('quick_btn')}<small>${t('quick_sub')}</small></a><div class="tr3"><span>${t('tr_cod')}</span><span>${t('tr_ship')}</span><span>${t('tr_ret')}</span></div>${REVIEWS[0] ? `<div class="rv1"><b>${esc(REVIEWS[0].name)}</b>„${esc(REVIEWS[0].text_pl)}”</div>` : ''}</aside></div></div>`;
 }
 const field = (id, label, ph='', hint='', type='text', mode='') => `<label for="${id}">${label.replace('*','<i>*</i>')}</label><input class="in" id="${id}" type="${type}" ${mode?`inputmode="${mode}"`:''} placeholder="${esc(ph)}" value="${esc(form[id] || '')}" autocomplete="off">${hint?`<div class="hint">${hint}</div>`:''}`;
 function orderPage() {
@@ -846,12 +849,12 @@ function orderPage() {
    `<h3>${t('recipient')}</h3>${field('f-name', t('lbl_name'), 'Jan Kowalski')}${field('f-phone', t('lbl_phone'), '+48 600 123 456', t('phone_hint'), 'tel', 'tel')}${field('f-miasto', t('lbl_city'), 'Warszawa')}
     <h3 style="margin-top:24px">${t('delivery_section')}</h3><div class="seg s3">${['paczkomat','zabka','kurier'].map(d => `<div class="${delivery===d?'on':''}" data-act="deliv" data-v="${d}" role="button" tabindex="0">${t('d_'+d)}</div>`).join('')}</div>${dl}`;
   return `<div class="wrap pg">${back('#/cart', t('cart_title'))}<h1>${t('order_title')}</h1><div class="two"><div class="fm"><h3>${t('pay_section')}</h3><div class="seg"><div class="${payMethod==='cod'?'on':''}" data-act="pay" data-v="cod" role="button" tabindex="0">${t('pay_cod')}</div><div class="${payMethod==='crypto'?'on':''}" data-act="pay" data-v="crypto" role="button" tabindex="0">${t('pay_crypto')}</div></div>${payMethod==='cod'?`<div class="cod">${t('cod_note')}</div>`:''}${body}</div>
-  <aside class="sum"><b class="sh">${t('your_order')}</b>${lines}${sv>0?`<div class="l"><span>${t('saving')}</span><b class="mint">${fmt(sv)}</b></div>`:''}<div class="l"><span>${t('delivery_cost')}</span><b>${fmt(dc)}</b></div><div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(total + dc)}</span></div><a class="btn big wide" data-act="confirm" role="button" tabindex="0">${t('confirm')}</a><div class="trust"><span>${t('trust1')}</span><span>${t('trust2')}</span></div></aside></div></div>`;
+  <aside class="sum"><b class="sh">${t('your_order')}</b>${lines}${sv>0?`<div class="l"><span>${t('saving')}</span><b class="mint">${fmt(sv)}</b></div>`:''}<div class="l"><span>${t('delivery_cost')}</span><b>${fmt(dc)}</b></div><div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(total + dc)}</span></div><a class="btn big wide" data-act="confirm" role="button" tabindex="0">${t('confirm')}</a><a class="quick" data-act="quick" role="button" tabindex="0">${t('quick_btn2')}<small>${t('quick_sub2')}</small></a><div class="trust"><span>${t('trust1')}</span><span>${t('trust2')}</span></div></aside></div></div>`;
 }
 function donePage() {
   if (!pending) return cartPage();
-  return `<div class="wrap"><div class="center"><div class="ok">${ico('check')}</div><h1>${t('done_h')}</h1><p>${pending.pay==='crypto'?t('done_crypto'):t('done_cod')}</p>
-  <div class="sum flat"><div class="l"><span>${t('pay')}</span><b>${pending.pay==='crypto'?t('pay_crypto'):t('pay_cod')}</b></div>${pending.deliveryLabel?`<div class="l"><span>${t('delivery')}</span><b>${esc(pending.deliveryLabel)}</b></div>`:''}<div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(pending.total)}</span></div></div>
+  return `<div class="wrap"><div class="center"><div class="ok">${ico('check')}</div><h1>${t('done_h')}</h1><p>${pending.pay==='quick'?t('done_quick'):pending.pay==='crypto'?t('done_crypto'):t('done_cod')}</p>
+  <div class="sum flat">${pending.pay==='quick'?`<div class="l"><span>${t('order_no')}</span><b>#${esc(pending.code)}</b></div>`:`<div class="l"><span>${t('pay')}</span><b>${pending.pay==='crypto'?t('pay_crypto'):t('pay_cod')}</b></div>`}${pending.deliveryLabel?`<div class="l"><span>${t('delivery')}</span><b>${esc(pending.deliveryLabel)}</b></div>`:''}<div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(pending.total)}</span></div></div>
   <a class="btn big wide" id="mgr-link" href="${pending.link}" data-act="send">${ico('tg')} ${t('write_manager')}</a><a class="btn ghost wide" data-act="neworder" role="button" tabindex="0" style="margin-top:10px">${t('new_order')}</a></div></div>`;
 }
 function infoBlock(cur) {
@@ -931,7 +934,7 @@ const LAT = /^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż0-9 .,'\/\-]+$/;
 const val = id => (document.getElementById(id)?.value || '').trim();
 function saveForm() { document.querySelectorAll('.fm input').forEach(el => { form[el.id] = el.value; }); }
 async function confirmOrder() {
-  saveForm();
+  saveForm(); track('form_confirm');
   const total = cartTotal(), dc = deliveryCost(), count = cartCount();
   const T_ = pricingQty();
   let ol = ''; groupCart().forEach(g => { ol += g.modelName + '\n'; g.items.forEach(i => { ol += `${i.flavor} x${i.qty} - ${unitPrice(i, T_)} ZŁ\n`; }); ol += '\n'; });
@@ -946,7 +949,7 @@ async function confirmOrder() {
     // формат не проверяем: главное, чтобы заказ дошёл до менеджера, а он уточнит данные
     const phone = /^[4-8]\d{8}$/.test(phoneDigits) ? '+48 ' + phoneDigits.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3') : phoneRaw;
     let dl = '';
-    if (delivery === 'paczkomat') { const k = val('f-kodpacz').toUpperCase(); if (!k) { showModal(t('fill_required')); return; } dl = `Dostawa: Paczkomat InPost\nMiasto: ${city}\nKod paczkomatu: ${k}\n`; deliveryLabel = 'Paczkomat InPost · ' + k; }
+    if (delivery === 'paczkomat') { const k = val('f-kodpacz').toUpperCase(); dl = `Dostawa: Paczkomat InPost\nMiasto: ${city}\nKod paczkomatu: ${k || 'do uzgodnienia z menedżerem'}\n`; deliveryLabel = 'Paczkomat InPost' + (k ? ' · ' + k : ''); }
     else if (delivery === 'zabka') { const z = val('f-zabka'); if (!z) { showModal(t('fill_zabka')); return; } dl = `Dostawa: Żabka\nMiasto: ${city}\nSklep Żabka / kod punktu: ${z}\n`; deliveryLabel = 'Żabka · ' + z; }
     else { const k = val('f-kod'), u = val('f-ulica'), b = val('f-budynek'), l = val('f-lokal'); if (!k || !u || !b) { showModal(t('fill_required')); return; } dl = `Dostawa: Kurier\nMiasto: ${city}\nKod pocztowy: ${k}\nUlica: ${u} ${b}${l ? ' / ' + l : ''}\n`; deliveryLabel = 'Kurier · ' + u + ' ' + b; }
     buyer = { full_name: name, phone }; shipping = { shipping_address_city: city };
@@ -954,7 +957,7 @@ async function confirmOrder() {
   }
   const btn = document.querySelector('[data-act="confirm"]'); if (btn) btn.style.opacity = .6;
   // отдельную проверку остатков здесь не делаем: воркер проверяет их при создании заказа (это вдвое быстрее)
-  pending = { buyer, shipping, msg, pay: payMethod, sum: total, total: total + dc, deliveryLabel, link: `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(msg)}` };
+  pending = { buyer, shipping, msg, pay: payMethod, sum: total, total: total + dc, deliveryLabel, link: `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(payMethod === 'crypto' ? `${T.pl.msg_greeting} (kryptowaluta)` : `${T.pl.msg_greeting} na imię ${buyer.full_name}`)}` };
   // заказ создаём сразу (KeyCRM + копия менеджеру в Telegram). Клиент не ждёт: экран «Prawie gotowe» открывается мгновенно,
   // а заказ создаётся в фоне. Если не получилось (например, товар закончился) — возвращаем в оформление с сообщением.
   if (!(orderCreated && lastSig === msg)) {
@@ -965,7 +968,7 @@ async function confirmOrder() {
     cart = {}; saveCart();
     bg.then(r => {
       busy = false;
-      if (r.ok) return;
+      if (r.ok) { track('order_submitted', { pay: payMethod, total }); return; }
       orderCreated = false; lastSig = ''; pending = null; cart = backup; saveCart();
       showModal(r.stockSku ? t('stock_checkout_error', nameOf(r.stockSku)) : r.message); go('#/order');
     });
@@ -973,11 +976,32 @@ async function confirmOrder() {
   if (btn) btn.style.opacity = 1;
   go('#/done');
 }
+function quickCode() { const a = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let c = ''; for (let i = 0; i < 4; i++) c += a[Math.floor(Math.random() * a.length)]; return c; }
+// быстрый заказ: без данных клиента. Заказ уходит менеджеру (KeyCRM + бот) с коротким номером, клиента открывает чат с менеджером
+function quickOrder() {
+  if (busy || !cartCount()) return;
+  busy = true;
+  const total = cartTotal(), dc = deliveryCost(), count = cartCount(), T_ = pricingQty(), code = quickCode();
+  let ol = ''; groupCart().forEach(g => { ol += g.modelName + '\n'; g.items.forEach(i => { ol += `${i.flavor} x${i.qty} - ${unitPrice(i, T_)} ZŁ\n`; }); ol += '\n'; });
+  const msg = `${T.pl.msg_greeting} #${code}\n\nQUICK #${code}\nZAMÓWIENIE\n\n${ol}TOTAL: ${count} sztuk\nCENA: ${total} Zł\n\nCena dostawy: ${dc} Zł\nRazem do zapłaty: ${total}+${dc}=${total+dc} Zł`;
+  pending = { buyer: { full_name: `Быстрый заказ #${code} — ожидает данные от менеджера`, phone: '' }, shipping: {}, msg, pay: 'quick', code, sum: total, total: total + dc, deliveryLabel: '', link: `https://t.me/${MANAGER_USERNAME}?text=${encodeURIComponent(`${T.pl.msg_greeting} #${code}`)}` };
+  const backup = JSON.parse(JSON.stringify(cart)), link = pending.link;
+  const bg = createOrder();
+  orderCreated = true; lastSig = msg; submitTracked = true;
+  cart = {}; saveCart();
+  track('quick_order', { total }); track('manager_click', { from: 'quick' });
+  bg.then(r => {
+    busy = false;
+    if (r.ok) return;
+    orderCreated = false; lastSig = ''; pending = null; cart = backup; saveCart();
+    showModal(r.stockSku ? t('stock_checkout_error', nameOf(r.stockSku)) : r.message); go('#/cart');
+  });
+  go('#/done');
+  try { window.location.href = link; } catch (e) {}
+}
 function sendToManager(ev) {
   // заказ уже создан при подтверждении; здесь только статистика (в дашборд идёт именно нажатие «Napisz do menedżera»)
   track('manager_click', { from: 'order' });
-  if (!pending) return;
-  if (!submitTracked) { submitTracked = true; track('order_submitted', { pay: pending.pay, total: pending.sum }); }
 }
 // автопрокрутка отзывов: раз в 5 секунд на одну карточку, по кругу; паузится, если пользователь трогает ленту
 let _revPause = 0;
@@ -1005,7 +1029,8 @@ document.addEventListener('click', ev => {
   else if (a === 'menu') document.getElementById('mmenu').classList.toggle('open');
   else if (a === 'scroll') { ev.preventDefault(); document.getElementById('catalog')?.scrollIntoView({ behavior: 'auto' }); }
   else if (a === 'pay') { saveForm(); payMethod = el.dataset.v; renderPage(); }
-  else if (a === 'deliv') { saveForm(); delivery = el.dataset.v; renderPage(); }
+  else if (a === 'deliv') { saveForm(); delivery = el.dataset.v; renderPage(); track('form_delivery', { v: delivery }); }
+  else if (a === 'quick') quickOrder();
   else if (a === 'confirm') confirmOrder();
   else if (a === 'send') sendToManager(ev);
   else if (a === 'neworder') { cart = {}; saveCart(); pending = null; orderCreated = false; lastSig = ''; submitTracked = false; Object.keys(form).forEach(k => delete form[k]); go('#/'); }
@@ -1017,7 +1042,11 @@ document.addEventListener('click', ev => {
   else if (a === 'ageno') { document.getElementById('gate').innerHTML = `<div class="age-card"><div class="age-title">${t('sorry')}</div><p style="color:var(--text2);font-size:14px">${t('sorry_text')}</p></div>`; }
   if (a !== 'menu') document.getElementById('mmenu')?.classList.remove('open');
 });
+const _fe = {};
+function formEvent(name) { if (_fe[name]) return; _fe[name] = 1; track(name); }
+document.addEventListener('focusin', ev => { const id = ev.target && ev.target.id; if (id === 'f-kodpacz' || id === 'f-zabka' || id === 'f-kod') formEvent('form_code'); });
 document.addEventListener('input', ev => {
+  if (ev.target.id === 'f-phone' && ev.target.value.replace(/\D/g, '').length >= 9) formEvent('form_phone');
   if (typeof ev.target.id === 'string' && ev.target.id.indexOf('f-') === 0) { form[ev.target.id] = ev.target.value; }
 });
 document.addEventListener('keydown', ev => { if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('[role=button][data-act]')) { ev.preventDefault(); ev.target.click(); } });
