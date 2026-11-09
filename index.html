@@ -169,7 +169,7 @@ const T = {
   search:'Szukaj smaku', sale:'Promocja', out:'Wyprzedane', smart:'Smart Cena', pcs:'szt.', per_pcs:'zł/szt.', 
   cart_title:'Koszyk', cart_empty:'Koszyk pusty', cart_empty_sub:'Dodaj produkty z katalogu', positions:'Pozycji', discount:'Zniżka Smart Cena', total:'Razem', add_more:'Dodaj więcej', checkout:'Złóż zamówienie', 
   upsell:(n,p,s)=>`Dodaj jeszcze <b>${n} szt.</b> → cena <b>${p} zł/szt.</b>, zaoszczędzisz <b>${s} zł</b>`,
-  order_title:'Złożenie zamówienia', your_order:'Twoje zamówienie:', saving:'Oszczędność Smart Cena', pay_section:'Metoda płatności', pay_cod:'Pobranie', cod_note:'Płacisz kurierowi lub przy odbiorze — teraz nic nie płacisz.', quick_btn:'Zamów bez podawania danych', quick_sub:'Zamówienie trafi do menedżera, dane podasz w czacie', quick_btn2:'Wolę bez formularza', quick_sub2:'Napisz do menedżera — dane podasz w czacie', tr_cod:'Płatność przy odbiorze', tr_ship:'Dostawa od 25 zł · Paczkomat, Żabka, kurier', tr_ret:'Zwrot i wymiana na stronie', order_no:'Numer zamówienia', done_quick:'Napisz do menedżera — poprosi o dane i potwierdzi zamówienie. Podaj numer zamówienia.', trust1:'Dane widzi tylko menedżer', trust2:'Menedżer potwierdzi zamówienie w Telegramie', pay_crypto:'Kryptowaluta',
+  order_title:'Złożenie zamówienia', your_order:'Twoje zamówienie:', saving:'Oszczędność Smart Cena', pay_section:'Metoda płatności', pay_cod:'Pobranie', cod_note:'Płacisz kurierowi lub przy odbiorze — teraz nic nie płacisz.', quick_btn:'Zamów bez podawania danych', qw_h:'Ostatni krok', qw_p:'Koniecznie napisz do menedżera — bez wiadomości zamówienie zostanie anulowane.', qw_close:'Zamknij', quick_sub:'Zamówienie trafi do menedżera, dane podasz w czacie', quick_btn2:'Wolę bez formularza', quick_sub2:'Napisz do menedżera — dane podasz w czacie', tr_cod:'Płatność przy odbiorze', tr_ship:'Dostawa od 25 zł · Paczkomat, Żabka, kurier', tr_ret:'Zwrot i wymiana na stronie', order_no:'Numer zamówienia', done_quick:'Napisz do menedżera — poprosi o dane i potwierdzi zamówienie. Podaj numer zamówienia.', trust1:'Dane widzi tylko menedżer', trust2:'Menedżer potwierdzi zamówienie w Telegramie', pay_crypto:'Kryptowaluta',
   crypto_hint:'Po kliknięciu przycisku poniżej — napisz do menedżera, prześle dane do płatności i potwierdzi zamówienie.', recipient:'Dane odbiorcy', delivery_section:'Sposób dostawy',
   lbl_name:'Imię i Nazwisko *', lbl_phone:'Telefon *', phone_hint:'Numer polski w formacie +48 xxx xxx xxx', lbl_city:'Miasto *', lbl_kodpacz:'Kod paczkomatu (opcjonalnie)', paczkomat_hint:'Nie znasz kodu? Zostaw puste — menedżer pomoże wybrać paczkomat.',
   lbl_zabka:'Adres sklepu Żabka lub kod punktu *', zabka_hint:'Ulica i numer sklepu Żabka lub kod punktu InPost', lbl_zip:'Kod pocztowy *', lbl_street:'Ulica *', lbl_building:'Numer budynku *', lbl_flat:'Numer lokalu', lbl_flat_ph:'5 (opcjonalnie)',
@@ -200,7 +200,7 @@ const T = {
   search:'Поиск по вкусам', sale:'Акция', out:'Нет в наличии', smart:'Smart Cena', pcs:'шт.', per_pcs:'zł/шт.', 
   cart_title:'Корзина', cart_empty:'Корзина пуста', cart_empty_sub:'Добавьте товары из каталога', positions:'Позиций', discount:'Скидка Smart Cena', total:'Итого', add_more:'Добавить ещё', checkout:'Оформить заказ', 
   upsell:(n,p,s)=>`Добавьте ещё <b>${n} шт.</b> → цена <b>${p} zł/шт.</b>, сэкономите <b>${s} zł</b>`,
-  order_title:'Оформление заказа', your_order:'Ваш заказ:', saving:'Экономия Smart Cena', pay_section:'Способ оплаты', pay_cod:'Оплата при получении', cod_note:'Платите курьеру или при получении — сейчас ничего платить не нужно.', quick_btn:'Заказать без ввода данных', quick_sub:'Заказ уйдёт менеджеру, данные вы назовёте в чате', quick_btn2:'Лучше без формы', quick_sub2:'Напишите менеджеру — данные назовёте в чате', tr_cod:'Оплата при получении', tr_ship:'Доставка от 25 zł · Paczkomat, Żabka, курьер', tr_ret:'Возврат и обмен — правила на сайте', order_no:'Номер заказа', done_quick:'Напишите менеджеру — он запросит данные и подтвердит заказ. Назовите номер заказа.', trust1:'Данные видит только менеджер', trust2:'Менеджер подтвердит заказ в Telegram', pay_crypto:'Криптовалюта',
+  order_title:'Оформление заказа', your_order:'Ваш заказ:', saving:'Экономия Smart Cena', pay_section:'Способ оплаты', pay_cod:'Оплата при получении', cod_note:'Платите курьеру или при получении — сейчас ничего платить не нужно.', quick_btn:'Заказать без ввода данных', qw_h:'Последний шаг', qw_p:'Обязательно напишите менеджеру — без сообщения заказ будет аннулирован.', qw_close:'Закрыть', quick_sub:'Заказ уйдёт менеджеру, данные вы назовёте в чате', quick_btn2:'Лучше без формы', quick_sub2:'Напишите менеджеру — данные назовёте в чате', tr_cod:'Оплата при получении', tr_ship:'Доставка от 25 zł · Paczkomat, Żabka, курьер', tr_ret:'Возврат и обмен — правила на сайте', order_no:'Номер заказа', done_quick:'Напишите менеджеру — он запросит данные и подтвердит заказ. Назовите номер заказа.', trust1:'Данные видит только менеджер', trust2:'Менеджер подтвердит заказ в Telegram', pay_crypto:'Криптовалюта',
   crypto_hint:'После нажатия кнопки ниже напишите менеджеру — он пришлёт данные для оплаты и подтвердит заказ.', recipient:'Данные получателя', delivery_section:'Способ доставки',
   lbl_name:'Имя и фамилия *', lbl_phone:'Телефон *', phone_hint:'Польский номер в формате +48 xxx xxx xxx', lbl_city:'Город *', lbl_kodpacz:'Код пачкомата (необязательно)', paczkomat_hint:'Не знаете код? Оставьте пустым — менеджер поможет выбрать пачкомат.',
   lbl_zabka:'Адрес магазина Żabka или код пункта *', zabka_hint:'Улица и номер магазина Żabka или код пункта InPost', lbl_zip:'Почтовый индекс *', lbl_street:'Улица *', lbl_building:'Номер дома *', lbl_flat:'Номер квартиры', lbl_flat_ph:'5 (необязательно)',
@@ -903,6 +903,7 @@ function onRoute() {
 // ---------- модалка ----------
 function showTgConfirm(href) { const m = document.getElementById('modal'); m.innerHTML = `<div class="dlg card"><p style="color:var(--text);margin:6px 0 18px;font-size:17px;font-weight:600">${t('tg_q')}</p><a class="btn p lg" href="${esc(href)}" target="_blank" rel="noopener" data-act="tgyes" style="width:100%">${t('tg_yes')}</a><a class="btn ghost lg" data-act="mclose" role="button" tabindex="0" style="width:100%;margin-top:10px">${t('tg_no')}</a></div>`; m.className = 'ov'; }
 function showModal(msg) { const m = document.getElementById('modal'); m.innerHTML = `<div class="dlg card"><p style="color:var(--text);margin:6px 0 18px;font-size:16px">${msg}</p><a class="btn p lg" data-act="mclose">${t('ok')}</a></div>`; m.className = 'ov'; }
+function showQuickWarn(href) { const m = document.getElementById('modal'); m.innerHTML = `<div class="dlg card"><h3 style="margin:0 0 4px;font-size:20px">${t('qw_h')}</h3><p style="color:var(--text);margin:10px 0 18px;font-size:16px;line-height:1.5">${t('qw_p')}</p><a class="btn big wide" href="${esc(href)}" target="_blank" rel="noopener" data-act="qwgo">${t('write_manager')}</a><a class="btn ghost wide" data-act="mclose" role="button" tabindex="0" style="margin-top:10px">${t('qw_close')}</a></div>`; m.className = 'ov'; }
 const closeModal = () => { document.getElementById('modal').className = 'ov hidden'; };
 // ---------- возраст и язык ----------
 function showGate() {
@@ -989,7 +990,7 @@ function quickOrder() {
   const bg = createOrder();
   orderCreated = true; lastSig = msg; submitTracked = true;
   cart = {}; saveCart();
-  track('quick_order', { total }); track('manager_click', { from: 'quick' });
+  track('quick_order', { total });
   bg.then(r => {
     busy = false;
     if (r.ok) return;
@@ -997,7 +998,7 @@ function quickOrder() {
     showModal(r.stockSku ? t('stock_checkout_error', nameOf(r.stockSku)) : r.message); go('#/cart');
   });
   go('#/done');
-  try { window.location.href = link; } catch (e) {}
+  showQuickWarn(link);
 }
 function sendToManager(ev) {
   // заказ уже создан при подтверждении; здесь только статистика (в дашборд идёт именно нажатие «Napisz do menedżera»)
@@ -1035,6 +1036,7 @@ document.addEventListener('click', ev => {
   else if (a === 'send') sendToManager(ev);
   else if (a === 'neworder') { cart = {}; saveCart(); pending = null; orderCreated = false; lastSig = ''; submitTracked = false; Object.keys(form).forEach(k => delete form[k]); go('#/'); }
   else if (a === 'mclose') closeModal();
+  else if (a === 'qwgo') { track('manager_click', { from: 'quick_modal' }); closeModal(); }
   else if (a === 'mgr') track('manager_click', { src: 'site' });
   else if (a === 'tgapp') { ev.preventDefault(); document.getElementById('mmenu')?.classList.remove('open'); showTgConfirm(el.getAttribute('href')); }
   else if (a === 'tgyes') { track('tgapp_click', { src: 'site' }); closeModal(); }
