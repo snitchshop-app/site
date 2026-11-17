@@ -39,6 +39,13 @@ a:focus-visible,[role=button]:focus-visible,button:focus-visible,input:focus-vis
 h1{font-size:clamp(30px,4.6vw,58px);line-height:1.04;font-weight:800;letter-spacing:-.02em}
 .htxt p{font-size:19px;color:#c9d6d4;margin:18px 0 28px;max-width:440px}
 .hban img{width:100%;aspect-ratio:746/400;object-fit:cover;border-radius:22px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.hban{position:relative}
+.hban .sl{display:grid;touch-action:pan-y}
+.hban .sl img{grid-area:1/1;opacity:0;transition:opacity .6s;pointer-events:none}
+.hban .sl img.on{opacity:1}
+.hban .dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.hban .dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.3);cursor:pointer;transition:all .25s}
+.hban .dots button.on{background:#a78bfa;width:22px;border-radius:5px}
 /* strip */
 .strip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:-6px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .strip div{padding:18px 20px;border-right:1px solid var(--line)}.strip div:last-child{border:0}.strip b{display:block;font-size:15px;font-weight:600}.strip span{font-size:13px;color:var(--mut)}
@@ -699,14 +706,34 @@ function upsell() {
 }
 // ---------- склад ----------
 let stockCache = {};
-async function loadStock(model) {
-  const skus = model.flavors.map(f => SKU_MAP[model.id + '::' + f]).filter(Boolean); if (!skus.length) return;
+let stockLoadedAt = 0; // когда последний раз получили остатки (мс)
+// Обновляет кэш и перерисовывает страницу модели только если цифры реально изменились (чтобы ничего не мигало)
+function setStock(map, skus) {
+  let changed = false;
+  skus.forEach(sku => { const q = map[sku] ?? 0; if (stockCache[sku] !== q) { stockCache[sku] = q; changed = true; } });
+  if (changed && route().page === 'model') renderPage();
+}
+// Остатки ВСЕХ товаров одним быстрым запросом — при входе и потом раз в минуту,
+// чтобы к моменту открытия модели данные уже были и вкусы не «прыгали».
+async function preloadStock() {
   try {
-    const r = await fetch(`${PROXY_URL}/stock-bulk?skus=${encodeURIComponent(skus.join(','))}`), d = await r.json();
-    Object.assign(stockCache, d.results || {});
-    if (route().page === 'model') renderPage();
+    const r = await fetch(`${PROXY_URL}/stock-all`); if (!r.ok) return;
+    const d = await r.json(); if (!d.results) return;
+    stockLoadedAt = Date.now();
+    setStock(d.results, Object.values(SKU_MAP));
   } catch(e) {}
 }
+async function loadStock(model) {
+  const skus = model.flavors.map(f => SKU_MAP[model.id + '::' + f]).filter(Boolean); if (!skus.length) return;
+  if (Date.now() - stockLoadedAt < 60000 && skus.every(s => s in stockCache)) return; // данные свежие, страница уже нарисована из кэша
+  try {
+    const r = await fetch(`${PROXY_URL}/stock-bulk?skus=${encodeURIComponent(skus.join(','))}`), d = await r.json();
+    if (!r.ok || !d.results) return;
+    setStock(d.results, skus);
+  } catch(e) {}
+}
+setInterval(() => { if (!document.hidden) preloadStock(); }, 60000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - stockLoadedAt > 60000) preloadStock(); });
 const stockOf = key => { const sku = SKU_MAP[key]; return sku && (sku in stockCache) ? stockCache[sku] : null; };
 function nameOf(sku) { const it = Object.values(cart).find(i => SKU_MAP[i.key] === sku); return it ? `${it.modelName} ${it.flavor}` : sku; }
 async function createOrder() {
@@ -803,7 +830,7 @@ function home() {
   const revs = REVIEWS.length ? `<section class="sec rv" id="opinie"><h2>${t('reviews')}</h2><div class="rvwrap"><button class="rvnav prev" data-act="revprev" aria-label="&lt;">${ico('back')}</button><div class="rvs" id="rvs">${REVIEWS.map(r => { const tx = r['text_' + lang] || r.text_pl || r.text_ru || ''; const meta = [r.city, r.date].filter(Boolean).map(esc).join(' · '); return `<figure class="rev">${r.img ? `<img src="${esc(r.img)}" alt="" loading="lazy">` : ''}${tx ? `<blockquote><span class="qm">&ldquo;</span><p>${esc(tx)}</p></blockquote>` : ''}<figcaption><b>${esc(r.name || '')}</b>${meta ? `<span>${meta}</span>` : ''}</figcaption></figure>`; }).join('')}</div><button class="rvnav next" data-act="revnext" aria-label="&gt;">${ico('arrow')}</button></div></section>` : '';
   const steps = [['s1','s1s'],['s2','s2s'],['s3','s3s']].map(([a,b],i) => `<div class="stp"><i>0${i+1}</i><b>${t(a)}</b><p>${t(b)}</p></div>`).join('');
   const tgBtn = BOT_USERNAME ? `<a class="btn" href="${tgAppUrl()}" target="_blank" rel="noopener" data-act="tgapp">${ico('tg')} ${t('open_tg')}</a>` : '';
-  return `<section class="hero"><img class="hbg" src="images/bg-main.webp" alt=""><div class="wrap hero-in"><div class="htxt"><h1>${t('hero_h')}</h1><p>${t('hero_p')}</p><a class="btn big" href="#catalog" data-act="scroll">${t('open_catalog')} ${ico('arrow')}</a></div><div class="hban"><img src="images/banner-oferta.png" alt="Super oferta"></div></div></section>
+  return `<section class="hero"><img class="hbg" src="images/bg-main.webp" alt=""><div class="wrap hero-in"><div class="htxt"><h1>${t('hero_h')}</h1><p>${t('hero_p')}</p><a class="btn big" href="#catalog" data-act="scroll">${t('open_catalog')} ${ico('arrow')}</a></div>${heroBanner()}</div></section>
   <div class="wrap"><div class="strip rv">${perks}</div>
   <section class="sec rv" id="catalog"><h2>${t('categories')}</h2><div class="ct-grid">${cats}</div></section>
   <section class="sec rv" id="models"><h2>${catName(curCat)}</h2>${all}</section>
@@ -872,6 +899,39 @@ function applyInfo() {
 function infoPage() { return `<div class="wrap pg"><h1>${t('info_h')}</h1><div class="sub">${t('info_s')}</div>${infoBlock(route().a)}</div>`; }
 const notFound = () => `<div class="wrap"><div class="center"><h1>404</h1><a class="btn big" href="#/">${t('home')}</a></div></div>`;
 // ---------- отрисовка ----------
+// Баннеры главной: чтобы добавить новый, положите файл в images/ и допишите имя в список
+const BANNERS = [
+  { src: 'images/banner-oferta.png', alt: 'Super oferta' }
+];
+const BANNER_MS = 5000;
+let bannerIdx = 0, bannerHold = 0;
+function heroBanner() {
+  if (bannerIdx >= BANNERS.length) bannerIdx = 0;
+  const imgs = BANNERS.map((b, i) => `<img src="${esc(b.src)}" alt="${esc(b.alt)}" class="${i === bannerIdx ? 'on' : ''}">`).join('');
+  const dots = BANNERS.length > 1 ? `<div class="dots">${BANNERS.map((b, i) => `<button type="button" aria-label="${i + 1}" data-bn="${i}" class="${i === bannerIdx ? 'on' : ''}"></button>`).join('')}</div>` : '';
+  return `<div class="hban"><div class="sl">${imgs}</div>${dots}</div>`;
+}
+function bannerShow(i) {
+  const box = document.querySelector('.hban'); if (!box) return;
+  const n = BANNERS.length; bannerIdx = (i + n) % n;
+  box.querySelectorAll('.sl img').forEach((el, k) => el.classList.toggle('on', k === bannerIdx));
+  box.querySelectorAll('.dots button').forEach((el, k) => el.classList.toggle('on', k === bannerIdx));
+}
+if (BANNERS.length > 1) {
+  setInterval(() => { if (!bannerHold && !document.hidden) bannerShow(bannerIdx + 1); }, BANNER_MS);
+  document.addEventListener('click', e => {
+    const d = e.target.closest && e.target.closest('[data-bn]');
+    if (d) { bannerShow(+d.dataset.bn); bannerHold = Date.now() + 8000; setTimeout(() => { if (Date.now() >= bannerHold) bannerHold = 0; }, 8100); }
+  });
+  document.addEventListener('mouseover', e => { if (e.target.closest && e.target.closest('.hban')) bannerHold = 1; });
+  document.addEventListener('mouseout', e => { if (e.target.closest && e.target.closest('.hban')) bannerHold = 0; });
+  let sx = null;
+  document.addEventListener('touchstart', e => { if (e.target.closest && e.target.closest('.hban .sl')) sx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 40) bannerShow(bannerIdx + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+}
 function renderPage() {
   const r = route(), app = document.getElementById('app');
   const focusId = document.activeElement && document.activeElement.id, selStart = document.activeElement?.selectionStart;
@@ -1030,6 +1090,6 @@ document.addEventListener('input', ev => {
 document.addEventListener('keydown', ev => { if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('[role=button][data-act]')) { ev.preventDefault(); ev.target.click(); } });
 window.addEventListener('hashchange', onRoute);
 document.documentElement.lang = lang;
-showGate(); onRoute(); if (ageOk()) track('app_open', {});
+showGate(); onRoute(); preloadStock(); if (ageOk()) track('app_open', {});
 
 </script></body></html>
