@@ -734,6 +734,12 @@ async function loadStock(model) {
 }
 setInterval(() => { if (!document.hidden) preloadStock(); }, 60000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - stockLoadedAt > 60000) preloadStock(); });
+// Порядок вкусов: сначала в наличии (по алфавиту), потом распроданные (тоже по алфавиту)
+function flavorsInOrder(m) {
+  const isOut = n => { const k = m.id + '::' + n, sku = SKU_MAP[k]; return !!sku && (sku in stockCache) && stockCache[sku] <= 0; };
+  const abc = (a, b) => a.localeCompare(b, 'en', { sensitivity: 'base', numeric: true });
+  return m.flavors.slice().sort((a, b) => (isOut(a) - isOut(b)) || abc(a, b));
+}
 const stockOf = key => { const sku = SKU_MAP[key]; return sku && (sku in stockCache) ? stockCache[sku] : null; };
 function nameOf(sku) { const it = Object.values(cart).find(i => SKU_MAP[i.key] === sku); return it ? `${it.modelName} ${it.flavor}` : sku; }
 async function createOrder() {
@@ -849,7 +855,7 @@ function modelPage(id) {
   let curQ = -1; if (T_) { curQ = tt[0][0]; for (const [q] of tt) if (T_ >= q) curQ = q; }
   const chips = tt.length < 2 ? '' : tt.map(([q, p], i) => { const nx = tt[i+1]?.[0], lab = i === tt.length-1 ? `${q}+` : (nx-1 === q ? `${q}` : `${q}–${nx-1}`);
     return `<div class="tier ${q===curQ?'on':''}"><span>${lab} ${t('pcs')}</span><b>${bt[i][1] !== p ? `<s>${bt[i][1]}</s> ` : ''}${p} zł</b></div>`; }).join('');
-  const fl = m.flavors.map(name => {
+  const fl = flavorsInOrder(m).map(name => {
     const key = m.id + '::' + name, qty = cart[key]?.qty || 0, st = stockOf(key), out = st !== null && st <= 0;
     return `<div class="fv ${qty?'has':''} ${out?'out':''}"><div class="fn"><span>${esc(name)}</span>${out?`<small>${t('out')}</small>`:''}</div><div class="qty ${out?'dis':''}"><button data-act="dec" data-key="${esc(key)}" aria-label="−">${ico('minus')}</button><em>${out?'–':qty}</em><button data-act="inc" data-key="${esc(key)}" aria-label="+">${ico('plus')}</button></div></div>`; }).join('');
   return `<div class="wrap pg">${back('#/cat/'+cat.id, catName(cat))}<div class="mlay"><div class="mhead"><div class="minfo"><h1>${esc(m.name)}</h1><div class="mprice">${priceHtml(cat, m)}</div>${sale?`<div class="saleline">${t('sale')}</div>`:''}${chips?`<div class="tiers-l">${t('smart')}</div><div class="tiers">${chips}</div>`:''}</div></div><div class="fvs">${fl}</div></div></div>`;
