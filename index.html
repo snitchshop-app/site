@@ -101,7 +101,7 @@ label{display:block;font-size:13px;color:#aebcc0;font-weight:500;margin:18px 0 8
 .age-card{max-width:360px}.age-card img{width:120px;height:120px;object-fit:cover;border-radius:22px;margin:0 auto 14px}.age-title{font:700 21px Poppins,sans-serif;margin-bottom:20px}.age-card .btn{width:100%;margin-top:10px}.age-card p{color:var(--mut);font-size:14px}
 .dlg p{margin:6px 0 20px;font-size:16px}.dlg .btn{width:100%}
 /* mobile bar */
-.cbar{display:none}
+.cbar{display:none}.cup{display:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media(max-width:900px){
  nav{display:none}.lang{display:none}.burger{display:grid}.hd{gap:10px;height:58px}.cartbtn{height:40px;padding:0 14px}.cartbtn .ct{display:none}
@@ -114,6 +114,7 @@ label{display:block;font-size:13px;color:#aebcc0;font-weight:500;margin:18px 0 8
  .fvs{grid-template-columns:1fr;gap:6px}.fv{min-height:54px}
  .two{grid-template-columns:1fr;gap:18px}.sum{position:static}.grp{padding:4px 14px 6px}.gh{padding:10px 0}.gh .th{width:46px;height:46px}.qty button{width:38px;height:38px}
  .info{grid-template-columns:1fr;gap:26px}.seg.s3 div{font-size:14px}
+ .cup{display:block;position:fixed;left:12px;right:12px;bottom:calc(max(12px,env(safe-area-inset-bottom)) + 62px);z-index:40;margin:0;background:#0E1A18;box-shadow:inset 0 0 0 1.5px #3FBFA2,0 10px 30px rgba(0,0,0,.5);color:#E6EFEE;font-size:14px;line-height:1.4;border-radius:16px;padding:10px 14px}.cup b{color:#5EE6C4}.view.hascup{padding-bottom:84px}
  .cbar{display:flex;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:40;align-items:center;justify-content:space-between;height:54px;padding:0 20px;border-radius:99px;background:var(--mint);color:var(--onm);font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.5)}.cbar span{display:flex;gap:10px;align-items:center}
 }
 
@@ -823,7 +824,11 @@ function footer() {
   const tg = BOT_USERNAME ? `<a href="${tgAppUrl()}" target="_blank" rel="noopener" data-act="tgapp">${t('open_tg')}</a>` : '';
   return `<footer class="ftr"><div class="wrap"><div class="fgrid"><div><b>Snitch Shop</b><p>${t('foot_about')}</p></div><div><b>${t('foot_info')}</b><a href="#info" data-act="toinfo" data-v="d">${t('nav_delivery')}</a><a href="#info" data-act="toinfo" data-v="p">${t('nav_payment')}</a><a href="#info" data-act="toinfo" data-v="z">${t('nav_returns')}</a></div><div><b>${t('foot_contact')}</b>${tg}<a href="https://t.me/${MANAGER_USERNAME}" target="_blank" rel="noopener" data-act="mgr">@${MANAGER_USERNAME}</a></div></div><div class="age">${t('foot_age')}</div></div></footer>`;
 }
-const cartBar = r => (cartCount() && r.page !== 'cart' && r.page !== 'order' && r.page !== 'done') ? `<a class="cbar" href="#/cart"><span>${ico('cart')}${cartCount()} ${t('pcs')}</span><b>${fmt(cartTotal())}</b></a>` : '';
+const cartBar = r => {
+  if (!(cartCount() && r.page !== 'cart' && r.page !== 'order' && r.page !== 'done')) return '';
+  const up = r.page === 'model' ? upsell() : '';   // подсказка Smart Cena закреплена над плашкой корзины (только на странице модели)
+  return (up ? up.replace('class="up"', 'class="up cup" role="status"') : '') + `<a class="cbar" href="#/cart"><span>${ico('cart')}${cartCount()} ${t('pcs')}</span><b>${fmt(cartTotal())}</b></a>`;
+};
 function modelCard(cat, m) {
   const sale = activeSale(m.id);
   return `<a class="pc" href="#/model/${m.id}"><div class="pimg">${imgTag(m.img, m.name)}${sale?`<span class="tag">${t('sale')}</span>`:''}</div><div class="pname">${esc(m.name)}</div><div class="pprice">${priceHtml(cat, m)}</div></a>`;
@@ -951,7 +956,7 @@ function renderPage() {
     case 'info': body = infoPage(); break;
     default: body = home();
   }
-  app.innerHTML = promoBar() + header(r) + `<main class="view">${body}</main>` + footer() + cartBar(r);
+  app.innerHTML = promoBar() + header(r) + `<main class="view${r.page==='model'&&cartCount()&&upsell()?' hascup':''}">${body}</main>` + footer() + cartBar(r);
   if (focusId) { const el = document.getElementById(focusId); if (el) { el.focus(); try { el.setSelectionRange(selStart, selStart); } catch(e) {} } }
 }
 let lastKey = '';
