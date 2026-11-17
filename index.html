@@ -143,6 +143,19 @@ fbq('track', 'PageView');
 </script>
 
 <!-- End Meta Pixel Code -->
+<style id="v2">
+.stps2{list-style:none;padding:0;margin:0 0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:520px}.stps2 li{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--mut)}.stps2 span{height:4px;border-radius:2px;background:#2c3c46}.stps2 em{font-style:normal}.stps2 li.dn span,.stps2 li.on span{background:var(--mt)}.stps2 li.dn,.stps2 li.on{color:var(--mt)}.stps2 li.on{font-weight:600}
+.dcards{display:grid;gap:10px;margin:0 0 8px}.dc{display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 16px;border-radius:18px;background:var(--s1);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.1);cursor:pointer}.dc.on{background:var(--s2);box-shadow:inset 0 0 0 2px var(--mt)}.dc .rd{width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px #5c6e78;flex:none;display:grid;place-items:center}.dc.on .rd{box-shadow:inset 0 0 0 2px var(--mt)}.dc.on .rd::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--mt)}.dc b{display:block;font-size:16px}.dc small{display:block;font-size:13px;color:var(--mut)}
+.dmas{display:block;width:132px;height:132px;border-radius:30px;object-fit:cover;margin:0 auto 22px;box-shadow:0 0 60px rgba(176,138,216,.3)}
+.fvh{display:flex;justify-content:space-between;align-items:baseline;margin:26px 0 12px}.fvh h2{font-size:19px}.fvh span{font-size:14px;color:var(--mut)}.fvh b{color:var(--text)}
+.fv.out{opacity:.6}.fv.out .qty{display:none}.fv .fn small{color:#8fa09e}
+.qty{background:#14222a;border-radius:14px;padding:3px}.qty button{border-radius:11px}.qty button[data-act="inc"],.fv.has .qty button[data-act="inc"]{background:var(--mint);color:var(--onm)}
+.stk{display:none}
+@media(max-width:900px){
+.fvs{background:var(--s1);border-radius:22px;padding:2px 14px;gap:0}.fv{background:transparent!important;border-radius:0;padding:8px 0;min-height:62px;box-shadow:none!important}.fv+.fv{border-top:1px solid var(--line)}.fv.has .fn span{font-weight:600}
+.stk{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;align-items:center;gap:14px;padding:12px 16px max(16px,env(safe-area-inset-bottom));background:#0c1418;border-top:1px solid var(--line)}.stk small{display:block;font-size:12px;color:var(--mut);line-height:1.2}.stk b{font:700 21px/1.2 Poppins,sans-serif}.stk .btn{flex:1;min-height:54px;border-radius:16px}.hm{display:none!important}.wrap.stkpad{padding-bottom:96px}
+}
+</style>
 </head><body>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1133848199634230&ev=PageView&noscript=1"
@@ -180,7 +193,7 @@ const T = {
   crypto_hint:'Po kliknięciu przycisku poniżej — napisz do menedżera, prześle dane do płatności i potwierdzi zamówienie.', recipient:'Dane odbiorcy', delivery_section:'Sposób dostawy',
   lbl_name:'Imię i Nazwisko *', lbl_phone:'Telefon *', phone_hint:'Numer polski w formacie +48 xxx xxx xxx', lbl_city:'Miasto *', lbl_kodpacz:'Kod paczkomatu (opcjonalnie)', paczkomat_hint:'Nie znasz kodu? Zostaw puste — menedżer pomoże wybrać paczkomat.',
   lbl_zabka:'Adres sklepu Żabka lub kod punktu *', zabka_hint:'Ulica i numer sklepu Żabka lub kod punktu InPost', lbl_zip:'Kod pocztowy *', lbl_street:'Ulica *', lbl_building:'Numer budynku *', lbl_flat:'Numer lokalu', lbl_flat_ph:'5 (opcjonalnie)',
-  d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Kurier', delivery_cost:'Cena dostawy', total_to_pay:'Razem do zapłaty', confirm:'Potwierdź dane',
+  d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Kurier', st1:'Koszyk', st2:'Dane', st3:'Menedżer', chosen:'Wybrano', ds_paczkomat:'Odbiór osobisty w Paczkomacie', ds_zabka:'Odbiór osobisty w sklepie Żabka', ds_kurier:'Dostawa pod same drzwi', delivery_cost:'Cena dostawy', total_to_pay:'Razem do zapłaty', confirm:'Potwierdź dane',
   done_h:'Prawie gotowe!', done_cod:'Aby potwierdzić zamówienie, napisz do menedżera — sprawdzi wszystko i wyśle paczkę.', done_crypto:'Aby potwierdzić zamówienie i otrzymać dane do płatności, napisz do menedżera.', write_manager:'Napisz do menedżera', new_order:'Złóż nowe zamówienie',
   pay:'Płatność', delivery:'Dostawa',
   fill_required:'Proszę wypełnić wszystkie wymagane pola (*)', fill_zabka:'Podaj adres sklepu Żabka lub kod punktu',
@@ -211,7 +224,7 @@ const T = {
   crypto_hint:'После нажатия кнопки ниже напишите менеджеру — он пришлёт данные для оплаты и подтвердит заказ.', recipient:'Данные получателя', delivery_section:'Способ доставки',
   lbl_name:'Имя и фамилия *', lbl_phone:'Телефон *', phone_hint:'Польский номер в формате +48 xxx xxx xxx', lbl_city:'Город *', lbl_kodpacz:'Код пачкомата (необязательно)', paczkomat_hint:'Не знаете код? Оставьте пустым — менеджер поможет выбрать пачкомат.',
   lbl_zabka:'Адрес магазина Żabka или код пункта *', zabka_hint:'Улица и номер магазина Żabka или код пункта InPost', lbl_zip:'Почтовый индекс *', lbl_street:'Улица *', lbl_building:'Номер дома *', lbl_flat:'Номер квартиры', lbl_flat_ph:'5 (необязательно)',
-  d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Курьер', delivery_cost:'Стоимость доставки', total_to_pay:'Итого к оплате', confirm:'Подтвердить данные',
+  d_paczkomat:'Paczkomat', d_zabka:'Żabka', d_kurier:'Курьер', st1:'Корзина', st2:'Данные', st3:'Менеджер', chosen:'Выбрано', ds_paczkomat:'Самовывоз из Paczkomat', ds_zabka:'Самовывоз из магазина Żabka', ds_kurier:'Доставка прямо к двери', delivery_cost:'Стоимость доставки', total_to_pay:'Итого к оплате', confirm:'Подтвердить данные',
   done_h:'Почти готово!', done_cod:'Чтобы подтвердить заказ, напишите менеджеру — он всё проверит и отправит посылку.', done_crypto:'Чтобы подтвердить заказ и получить данные для оплаты, напишите менеджеру.', write_manager:'Написать менеджеру', new_order:'Оформить новый заказ',
   pay:'Оплата', delivery:'Доставка',
   fill_required:'Пожалуйста, заполните все обязательные поля (*)', fill_zabka:'Укажите адрес магазина Żabka или код пункта',
@@ -860,11 +873,14 @@ function modelPage(id) {
   let curQ = -1; if (T_) { curQ = tt[0][0]; for (const [q] of tt) if (T_ >= q) curQ = q; }
   const chips = tt.length < 2 ? '' : tt.map(([q, p], i) => { const nx = tt[i+1]?.[0], lab = i === tt.length-1 ? `${q}+` : (nx-1 === q ? `${q}` : `${q}–${nx-1}`);
     return `<div class="tier ${q===curQ?'on':''}"><span>${lab} ${t('pcs')}</span><b>${bt[i][1] !== p ? `<s>${bt[i][1]}</s> ` : ''}${p} zł</b></div>`; }).join('');
+  const nSel = Object.values(cart).filter(i => i.model === m.id).reduce((a, i) => a + i.qty, 0);
   const fl = flavorsInOrder(m).map(name => {
     const key = m.id + '::' + name, qty = cart[key]?.qty || 0, st = stockOf(key), out = st !== null && st <= 0;
     return `<div class="fv ${qty?'has':''} ${out?'out':''}"><div class="fn"><span>${esc(name)}</span>${out?`<small>${t('out')}</small>`:''}</div><div class="qty ${out?'dis':''}"><button data-act="dec" data-key="${esc(key)}" aria-label="−">${ico('minus')}</button><em>${out?'–':qty}</em><button data-act="inc" data-key="${esc(key)}" aria-label="+">${ico('plus')}</button></div></div>`; }).join('');
-  return `<div class="wrap pg">${back('#/cat/'+cat.id, catName(cat))}<div class="mlay"><div class="mhead"><div class="minfo"><h1>${esc(m.name)}</h1><div class="mprice">${priceHtml(cat, m)}</div>${sale?`<div class="saleline">${t('sale')}</div>`:''}${chips?`<div class="tiers-l">${t('smart')}</div><div class="tiers">${chips}</div>`:''}</div></div><div class="fvs">${fl}</div></div></div>`;
+  return `<div class="wrap pg">${back('#/cat/'+cat.id, catName(cat))}<div class="mlay"><div class="mhead"><div class="minfo"><h1>${esc(m.name)}</h1><div class="mprice">${priceHtml(cat, m)}</div>${sale?`<div class="saleline">${t('sale')}</div>`:''}${chips?`<div class="tiers-l">${t('smart')}</div><div class="tiers">${chips}</div>`:''}</div></div><div class="fvh"><h2>${t('s1')}</h2><span>${t('chosen')}: <b>${nSel} ${t('pcs')}</b></span></div><div class="fvs">${fl}</div></div></div>`;
 }
+const stepsBar = n => `<ol class="stps2" aria-label="${t('st1')} → ${t('st2')} → ${t('st3')}">${[1,2,3].map(i => `<li class="${i<n?'dn':i===n?'on':''}"${i===n?' aria-current="step"':''}><span></span><em>${i} · ${t('st'+i)}</em></li>`).join('')}</ol>`;
+const stkBar = (label, sum, btn) => `<div class="stk"><div><small>${label}</small><b>${sum}</b></div>${btn}</div>`;
 function cartPage() {
   const items = Object.values(cart).filter(i => i.qty > 0);
   if (!items.length) return `<div class="wrap"><div class="center"><h1>${t('cart_empty')}</h1><p>${t('cart_empty_sub')}</p><a class="btn big" href="#/">${t('open_catalog')}</a></div></div>`;
@@ -872,8 +888,8 @@ function cartPage() {
   const rows = groups.map(g => { const f = findModel(g.model), up = unitPrice(g.items[0], T_);
     return `<div class="grp"><div class="gh"><div class="th">${imgTag(f?.m.img || '', g.modelName)}</div><div class="nm"><b>${esc(g.modelName)}</b><small>${g.qty} ${t('pcs')} · ${up} ${t('per_pcs')}</small></div><div class="sm">${fmt(g.sum)}</div></div>${g.items.map(i => `<div class="gr"><span>${esc(i.flavor)}</span><div class="qty"><button data-act="dec" data-key="${esc(i.key)}" aria-label="−">${ico('minus')}</button><em>${i.qty}</em><button data-act="inc" data-key="${esc(i.key)}" aria-label="+">${ico('plus')}</button></div></div>`).join('')}</div>`; }).join('');
   const sv = cartSavings();
-  return `<div class="wrap pg"><h1>${t('cart_title')}</h1><div class="sub">${cartCount()} ${t('pcs')}</div><div class="two"><div>${rows}<a class="btn ghost" href="#/" style="margin-top:6px">${ico('plus')} ${t('add_more')}</a></div>
-  <aside class="sum"><div class="l"><span>${t('positions')}</span><b>${items.length}</b></div>${sv>0?`<div class="l"><span>${t('discount')}</span><b class="mint">−${fmt(sv)}</b></div>`:''}${upsell()}<div class="tot"><span>${t('total')}</span><span>${fmt(cartTotal())}</span></div><a class="btn big wide" href="#/order" data-act="checkout">${t('checkout')} ${ico('arrow')}</a><div class="tr3"><span>${t('tr_cod')}</span><span>${t('tr_ship')}</span><span>${t('tr_ret')}</span></div>${REVIEWS[0] ? `<div class="rv1"><b>${esc(REVIEWS[0].name)}</b>„${esc(REVIEWS[0].text_pl)}”</div>` : ''}</aside></div></div>`;
+  return `<div class="wrap pg stkpad">${stepsBar(1)}<h1>${t('cart_title')}</h1><div class="sub">${cartCount()} ${t('pcs')}</div><div class="two"><div>${rows}<a class="btn ghost" href="#/" style="margin-top:6px">${ico('plus')} ${t('add_more')}</a></div>
+  <aside class="sum"><div class="l"><span>${t('positions')}</span><b>${items.length}</b></div>${sv>0?`<div class="l"><span>${t('discount')}</span><b class="mint">−${fmt(sv)}</b></div>`:''}${upsell()}<div class="tot"><span>${t('total')}</span><span>${fmt(cartTotal())}</span></div><a class="btn big wide hm" href="#/order" data-act="checkout">${t('checkout')} ${ico('arrow')}</a><div class="tr3"><span>${t('tr_cod')}</span><span>${t('tr_ship')}</span><span>${t('tr_ret')}</span></div>${REVIEWS[0] ? `<div class="rv1"><b>${esc(REVIEWS[0].name)}</b>„${esc(REVIEWS[0].text_pl)}”</div>` : ''}</aside></div>${stkBar(t('total'), fmt(cartTotal()), `<a class="btn big" href="#/order" data-act="checkout">${t('checkout')} ${ico('arrow')}</a>`)}</div>`;
 }
 const field = (id, label, ph='', hint='', type='text', mode='') => `<label for="${id}">${label.replace('*','<i>*</i>')}</label><input class="in" id="${id}" type="${type}" ${mode?`inputmode="${mode}"`:''} placeholder="${esc(ph)}" value="${esc(form[id] || '')}" autocomplete="off">${hint?`<div class="hint">${hint}</div>`:''}`;
 function orderPage() {
@@ -884,13 +900,13 @@ function orderPage() {
     kurier: field('f-kod', t('lbl_zip'), '00-001', '', 'text', 'numeric') + field('f-ulica', t('lbl_street')) + field('f-budynek', t('lbl_building'), '10') + field('f-lokal', t('lbl_flat'), t('lbl_flat_ph')) }[delivery];
   const body = payMethod === 'crypto' ? `<p class="sub" style="margin-top:14px">${t('crypto_hint')}</p>` :
    `<h3>${t('recipient')}</h3>${field('f-name', t('lbl_name'), 'Jan Kowalski')}${field('f-phone', t('lbl_phone'), '+48 600 123 456', t('phone_hint'), 'tel', 'tel')}${field('f-miasto', t('lbl_city'), 'Warszawa')}
-    <h3 style="margin-top:24px">${t('delivery_section')}</h3><div class="seg s3">${['paczkomat','zabka','kurier'].map(d => `<div class="${delivery===d?'on':''}" data-act="deliv" data-v="${d}" role="button" tabindex="0">${t('d_'+d)}</div>`).join('')}</div>${dl}`;
-  return `<div class="wrap pg">${back('#/cart', t('cart_title'))}<h1>${t('order_title')}</h1><div class="two"><div class="fm"><h3>${t('pay_section')}</h3><div class="seg"><div class="${payMethod==='cod'?'on':''}" data-act="pay" data-v="cod" role="button" tabindex="0">${t('pay_cod')}</div><div class="${payMethod==='crypto'?'on':''}" data-act="pay" data-v="crypto" role="button" tabindex="0">${t('pay_crypto')}</div></div>${payMethod==='cod'?`<div class="cod">${t('cod_note')}</div>`:''}${body}</div>
-  <aside class="sum"><b class="sh">${t('your_order')}</b>${lines}${sv>0?`<div class="l"><span>${t('saving')}</span><b class="mint">${fmt(sv)}</b></div>`:''}<div class="l"><span>${t('delivery_cost')}</span><b>${fmt(dc)}</b></div><div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(total + dc)}</span></div><a class="btn big wide" data-act="confirm" role="button" tabindex="0">${t('confirm')}</a><div class="trust"><span>${t('trust1')}</span><span>${t('trust2')}</span></div></aside></div></div>`;
+    <h3 style="margin-top:24px">${t('delivery_section')}</h3><div class="dcards" role="radiogroup" aria-label="${t('delivery_section')}">${['paczkomat','zabka','kurier'].map(d => `<div class="dc ${delivery===d?'on':''}" data-act="deliv" data-v="${d}" role="radio" aria-checked="${delivery===d}" tabindex="0"><span class="rd"></span><span><b>${t('d_'+d)}</b><small>${t('ds_'+d)}</small></span></div>`).join('')}</div>${dl}`;
+  return `<div class="wrap pg stkpad">${stepsBar(2)}${back('#/cart', t('cart_title'))}<h1>${t('order_title')}</h1><div class="two"><div class="fm"><h3>${t('pay_section')}</h3><div class="seg"><div class="${payMethod==='cod'?'on':''}" data-act="pay" data-v="cod" role="button" tabindex="0">${t('pay_cod')}</div><div class="${payMethod==='crypto'?'on':''}" data-act="pay" data-v="crypto" role="button" tabindex="0">${t('pay_crypto')}</div></div>${payMethod==='cod'?`<div class="cod">${t('cod_note')}</div>`:''}${body}</div>
+  <aside class="sum"><b class="sh">${t('your_order')}</b>${lines}${sv>0?`<div class="l"><span>${t('saving')}</span><b class="mint">${fmt(sv)}</b></div>`:''}<div class="l"><span>${t('delivery_cost')}</span><b>${fmt(dc)}</b></div><div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(total + dc)}</span></div><a class="btn big wide hm" data-act="confirm" role="button" tabindex="0">${t('confirm')}</a><div class="trust"><span>${t('trust1')}</span><span>${t('trust2')}</span></div></aside></div>${stkBar(t('total_to_pay'), fmt(total + dc), `<a class="btn big" data-act="confirm" role="button" tabindex="0">${t('confirm')}</a>`)}</div>`;
 }
 function donePage() {
   if (!pending) return cartPage();
-  return `<div class="wrap"><div class="center"><div class="ok">${ico('check')}</div><h1>${t('done_h')}</h1><p>${pending.pay==='crypto'?t('done_crypto'):t('done_cod')}</p>
+  return `<div class="wrap pg">${stepsBar(3)}<div class="center"><img class="dmas" src="images/mascot.webp" alt="" onerror="this.outerHTML='<div class=ok></div>'"><h1>${t('done_h')}</h1><p>${pending.pay==='crypto'?t('done_crypto'):t('done_cod')}</p>
   <div class="sum flat"><div class="l"><span>${t('pay')}</span><b>${pending.pay==='crypto'?t('pay_crypto'):t('pay_cod')}</b></div>${pending.deliveryLabel?`<div class="l"><span>${t('delivery')}</span><b>${esc(pending.deliveryLabel)}</b></div>`:''}<div class="tot"><span>${t('total_to_pay')}</span><span>${fmt(pending.total)}</span></div></div>
   <a class="btn big wide" id="mgr-link" href="${pending.link}" data-act="send">${ico('tg')} ${t('write_manager')}</a><a class="btn ghost wide" data-act="neworder" role="button" tabindex="0" style="margin-top:10px">${t('new_order')}</a></div></div>`;
 }
